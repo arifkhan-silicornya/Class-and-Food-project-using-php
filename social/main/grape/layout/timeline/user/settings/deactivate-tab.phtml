@@ -1,0 +1,51 @@
+<form class="deactivate-timeline-form" method="post">
+    <div class="form-container">
+        <div class="form-header">
+            @deactivate_account_label@
+        </div>
+
+        <div class="form-input-wrapper">
+            <label class="float-left span35">
+                @deactivate_account_confirm_message@
+            </label>
+
+            <div class="float-clear"></div>
+        </div>
+
+        <div class="form-input-wrapper">
+            <button class="active">
+                @deactivate_account_button@
+            </button>
+        </div>
+    </div>
+</form>
+
+<script>
+$(function () {
+    $('form.deactivate-timeline-form').ajaxForm({
+        url: SK_source()+'?t=user&a=deactivate',
+        
+        success: function (responseText) {
+            
+            if (responseText.status == 200) {
+                
+                $('.form-header').after('<div class="success-message hidden">@account_deactivated@</div>');
+                $('.success-message').fadeIn('fast',function () {
+                        $(this).fadeOut(1500, function() {
+                            $(this).remove();
+                            window.location = responseText.url;
+                        });
+                    });
+            }
+            else {
+                $('.form-header').after('<div class="success-message hidden">@something_went_wrong@</div>');
+                $('.success-message').fadeIn('fast',function () {
+                        $(this).fadeOut(1500, function() {
+                            $(this).remove();
+                        });
+                    });
+            }
+        }
+    });
+});
+</script>

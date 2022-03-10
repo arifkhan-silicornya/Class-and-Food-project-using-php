@@ -1,0 +1,109 @@
+<div class="timeline-header-wrapper">
+    <div class="cover-container">
+        <div class="cover-wrapper">
+            <img src="{{TIMELINE_COVER_URL}}" alt="{{TIMELINE_NAME}}">
+            <div class="cover-progress"></div>
+        </div>
+        
+        <div class="cover-resize-wrapper">
+            <img src="{{TIMELINE_ACTUAL_COVER_URL}}" alt="{{TIMELINE_NAME}}">
+            <div class="drag-div" align="center">@reposition_drag_label@</div>
+            <div class="cover-progress"></div>
+        </div>
+        
+        <div class="avatar-wrapper">
+            <img class="avatar" src="{{TIMELINE_AVATAR_URL}}" alt="{{TIMELINE_NAME}}">
+
+            {{CHANGE_AVATAR_HTML}}
+        </div>
+        <div class="timeline-name-wrapper">
+            <a href="{{TIMELINE_URL}}" data-href="?tab1=timeline&id={{TIMELINE_USERNAME}}">
+                {{TIMELINE_NAME}}
+            </a>
+            
+            {{VERIFIED_BADGE}}
+        </div>
+    </div>
+    <div class="timeline-statistics-wrapper" style="margin-bottom: 50px;">
+
+    </div>
+</div>
+
+<div class="float-left span35" style="float: left;">
+    {{TIMELINE_BUTTONS}}
+    
+    <div class="timeline-sidebar">
+        <div class="sidebar-header-wrapper">
+            @about_label@
+        </div>
+
+        {{INFO_GENDER_ROW}}
+
+        {{INFO_BIRTHDAY_ROW}}
+        
+        {{INFO_LOCATION_ROW}}
+        
+        {{INFO_HOMETOWN_ROW}}
+        
+        {{INFO_ABOUT_ROW}}
+    </div>
+
+
+
+
+
+
+
+
+    <div class="bhgccfbhcgb" style=" background: #fff0; color: #4e5665;border-radius: 3px">
+        
+        
+         <div class="dd-4s">
+            {{STORIES_LINK}}
+        </div>
+
+
+        <div class="dd-4s">
+            {{FOLLOW_REQUESTS_LINK}}
+            
+            {{FOLLOWING_LINK}}
+
+        </div>
+
+       
+            <div class="dd-4s">
+                <a href="{{PAGE_LIKES_TAB_URL}}" data-href="?tab1=timeline&tab2=likes&id={{TIMELINE_USERNAME}}">
+                    {{PAGE_LIKES_NUM}} @likes_label@
+                </a>
+            </div>
+
+            <div class="dd-4s">
+                <a href="{{GROUPS_JOINED_TAB_URL}}" data-href="?tab1=timeline&tab2=groups&id={{TIMELINE_USERNAME}}">
+                    {{GROUPS_JOINED_NUM}} @groups_label@
+                </a>
+            </div>
+       
+        
+       
+      
+    </div>
+
+
+
+
+
+
+
+
+</div>
+
+<div class="float-right span63" style="margin-left: 45px;">
+    <div class="timeline-370">
+        {{TAB_CONTENT}}
+    </div>
+</div>
+
+
+<div class="float-clear"></div>
+
+{{END}}

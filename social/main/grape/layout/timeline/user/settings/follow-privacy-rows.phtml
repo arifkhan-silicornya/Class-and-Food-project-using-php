@@ -1,0 +1,38 @@
+<div class="form-input-wrapper">
+    <label class="float-left span35">
+        @confirm_follow_request_label@:
+    </label>
+
+    <div class="input float-left span55">
+        <select name="confirm_followers" style="width: 30%;">
+            <option value="0" {{FOLLOW_REQUEST_NO_SELECTED_ATTR}}>
+                @no@
+            </option>
+
+            <option value="1" {{FOLLOW_REQUEST_YES_SELECTED_ATTR}}>
+                @yes@
+            </option>
+        </select>
+    </div>
+
+    <div class="float-clear"></div>
+</div>
+
+<div class="form-input-wrapper">
+    <label class="float-left span35">
+        @follow_privacy_label@:
+    </label>
+
+    <div class="input float-left span55">
+        <select name="follow_privacy">
+            <option value="everyone" {{FOLLOW_PRIVACY_EVERYONE_SELECTED_ATTR}}>
+                @everyone@
+            </option>
+
+            <option value="following" {{FOLLOW_PRIVACY_FOLLOWING_SELECTED_ATTR}}>
+                @people_i_follow@
+            </option>
+        </select>
+    </div>
+    <div class="float-clear"></div>
+</div>

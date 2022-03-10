@@ -1,0 +1,29 @@
+<div class="list-wrapper">
+    <div class="list-header">
+        {{FOLLOW_REQUESTS_LABEL}}
+    </div>
+
+    {{LIST_FOLLOW_REQUESTS}}
+</div>
+<script>
+function SK_acceptFollowRequest(follower_id) {
+    $('.follow-request-' + follower_id).find('.accept-btn').val('@accepting@..');
+    $.post(SK_source() + '?t=user&a=accept_request', {follower_id: follower_id}, function(data) {
+        if (data.status == 200) {
+            $('.follow-request-'+follower_id).slideUp(function() {
+                $(this).remove();
+            });
+        }
+    });
+}
+function SK_declineFollowRequest(follower_id) {
+    $('.follow-request-' + follower_id).find('.decline-btn').val('@declining@..');
+    $.post(SK_source() + '?t=user&a=decline_request', {follower_id: follower_id}, function(data) {
+        if (data.status == 200) {
+            $('.follow-request-'+follower_id).slideUp(function() {
+                $(this).remove();
+            });
+        }
+    });
+}
+</script>

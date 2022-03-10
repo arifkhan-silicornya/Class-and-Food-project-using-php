@@ -1,0 +1,92 @@
+<div class="story-filters-wrapper">
+    <div class="filter-header-wrapper">
+        @filters_header@
+    </div>
+    
+    <div class="filter all-wrapper" onclick="SK_filterStories('all',{{TIMELINE_ID}});">
+        <i class="icon-tasks progress-icon" data-icon="tasks"></i> 
+        @filter_label_all@
+    </div>
+    
+    <div class="filter texts-wrapper" onclick="SK_filterStories('texts',{{TIMELINE_ID}});">
+        <i class="icon-pencil progress-icon" data-icon="pencil"></i> 
+        @filter_label_texts@
+    </div>
+    
+    <div class="filter photos-wrapper" onclick="SK_filterStories('photos',{{TIMELINE_ID}});">
+        <i class="icon-camera-retro progress-icon" data-icon="camera-retro"></i> 
+        @filter_label_photos@
+    </div>
+    
+    <div class="filter videos-wrapper" onclick="SK_filterStories('videos',{{TIMELINE_ID}});">
+        <i class="icon-film progress-icon" data-icon="film"></i> 
+        @filter_label_videos@
+    </div>
+    
+    <div class="filter music-wrapper" onclick="SK_filterStories('music',{{TIMELINE_ID}});">
+        <i class="icon-music progress-icon" data-icon="music"></i> 
+        @filter_label_music@
+    </div>
+    
+    <div class="filter places-wrapper" onclick="SK_filterStories('places',{{TIMELINE_ID}});">
+        <i class="icon-map-marker progress-icon" data-icon="map-marker"></i> 
+        @filter_label_places@
+    </div>
+    
+    <div class="filter likes-wrapper" onclick="SK_filterStories('likes',{{TIMELINE_ID}});">
+        <i class="icon-thumbs-up progress-icon" data-icon="thumbs-up"></i> 
+        @filter_label_likes@
+    </div>
+    
+    <div class="filter shares-wrapper" onclick="SK_filterStories('shares',{{TIMELINE_ID}});">
+        <i class="icon-share-alt progress-icon" data-icon="share-alt"></i> 
+        @filter_label_shares@
+    </div>
+    
+    <div class="filter timeline_post_by_others-wrapper" onclick="SK_filterStories('timeline_post_by_others',{{TIMELINE_ID}});">
+        <i class="icon-group progress-icon" data-icon="group"></i> 
+        @filter_label_post_by_others@
+    </div>
+</div>
+<script>
+function SK_filterStories(type, timeline_id) {
+    main_wrapper = $('.story-filters-wrapper');
+    filter_wrapper = main_wrapper.find('.' + type + '-wrapper');
+    stories_wrapper = $('.stories-container');
+    
+    SK_progressIconLoader(filter_wrapper);
+    
+    sendData = new Object();
+    sendData.t = 'post';
+    sendData.a = 'filter';
+    sendData.type = type;
+    
+    if (typeof(timeline_id) != "undefined") {
+        sendData.timeline_id = timeline_id;
+        stories_wrapper.attr('data-story-timeline', timeline_id);
+    }
+    
+    stories_wrapper.attr('data-story-type', type)
+        .find('.stories-wrapper').html('')
+        .end()
+        .find('.load-btn').fadeOut('fast');
+    
+    $.get(SK_source(), sendData, function (data) {
+        
+        if (data.status == 200) {
+            stories_wrapper
+                .find('.stories-wrapper')
+                    .html(data.html)
+                .end()
+                .find('.load-btn')
+                    .fadeIn('fast').attr('onclick','SK_loadOldStories();').html('<i class="icon-reorder progress-icon hide"></i> View previous posts');
+        }
+        
+        main_wrapper.find('.filter-active').removeClass('filter-active');
+        filter_wrapper.addClass('filter-active');
+        
+        SK_progressIconLoader(filter_wrapper);
+        
+    });
+}
+</script>

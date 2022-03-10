@@ -1,0 +1,31 @@
+<form class="welcome-form login-form" method="post">
+    <div class="form-header">
+        <div class="float-left">
+            @log_in@
+        </div>
+
+        <div class="float-right">
+            <a href="{{FORGOT_PASSWORD_TAB_URL}}">
+                @forgot_password@?
+            </a>
+        </div>
+
+        <div class="float-clear"></div>
+    </div>
+    
+    <div class="form-content">
+        <div class="input-wrapper">
+            <input type="text" name="login_id" value="@login_id_label@" placeholder="@login_id_label@" data-placeholder="@login_id_label@" autocomplete="off">
+        </div>
+        
+        <div class="input-wrapper">
+            <input type="password" name="login_password" placeholder="Password" autocomplete="off">
+        </div>
+        
+        <div class="input-wrapper">
+            <input type="checkbox" name="keep_logged_in" value="1"> @keep_me_logged_in@
+        </div>
+        
+        <button class="submit-btn active"><i class="icon-signin progress-icon"></i> @log_in@</button>
+    </div>
+</form>

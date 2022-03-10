@@ -1,0 +1,17 @@
+<div id="message_recipient_{{LIST_RECIPIENT_ID}}" class="recipient-list cursor-hand" onclick="SK_getMessages({{LIST_RECIPIENT_ID}},'{{LIST_RECIPIENT_NAME}}');">
+    <table border="0" width="100%" cellspacing="0" cellpadding="0">
+    <tr>
+        <td width="32px" align="left" valign="middle">
+            <img width="32px" height="32px" class="recipient-avatar" src="{{LIST_RECIPIENT_THUMBNAIL_URL}}" alt="{{LIST_RECIPIENT_NAME}}" valign="middle">
+        </td>
+
+        <td align="left" valign="middle">
+            <span class="bold-500">{{LIST_RECIPIENT_NAME}}</span>
+            
+            <i class="icon-circle online-icon {{LIST_RECIPIENT_ONLINE_CLASS}}"></i>
+            
+            <span class="update-alert">{{LIST_RECIPIENT_MESSAGE_NUM}}</span>
+        </td>
+    </tr>
+    </table>
+</div>

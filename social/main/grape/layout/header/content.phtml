@@ -1,0 +1,57 @@
+<div class="header-wrapper" name="top">
+    <div class="header-content">
+        <div class="float-left" style="float: left;">
+            <table border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td class="header-site-logo" align="left" valign="top">
+
+                </td>
+
+                <td align="left" valign="top">
+                    <div class="header-live-search">
+                        <input value="Search Teachers, Students, Gr/Pg" placeholder="Search Teachers, Students, Gr/Pg" data-placeholder="Search Teachers, Students, Gr/Pg" type="text" onkeyup="SK_headerSearch(this.value);">
+                    </div>
+                </td>
+            </tr>
+            </table>
+        </div>
+
+        <div class="float-right" style="float: right;">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="#" class="head-link">Food</a>&nbsp;&nbsp;
+            <a href="#" class="head-link">Exam</a>
+
+            {{HEADER_NAVIGATION}}
+
+        </div>
+
+        <div class="float-clear"></div>
+    </div>
+</div>
+<div class="dropdown-search-container">
+    <div class="dropdown-search-wrapper">
+        <div class="dropdown-search-content float-left" style="float: left;">
+            <div class="search-header">
+                <i class="icon-search progress-icon hide"></i>
+                @header_search_header_label@
+                
+                <div class="close-btn">
+                    <a href="#" onclick="SK_headerSearch('');">Close</a>
+                </div>
+            </div>
+            
+            <div class="search-list-wrapper"></div>
+            
+            <div align="center">
+                <a class="page-link" href="#">
+                    @header_search_all_results_label@
+                </a>
+            </div>
+        </div>
+        <div class="float-clear"></div>
+    </div>
+</div>
+
+{{HEADER_DROPDOWNS}}
+
+{{HEADER_END}}

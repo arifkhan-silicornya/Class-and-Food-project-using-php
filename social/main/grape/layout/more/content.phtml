@@ -1,0 +1,43 @@
+<div class="page-margin"></div>
+
+<div class="float-left span50" style="float: none;margin-left: 25%;">
+    <div class="list-wrapper">
+	    <div class="list-header">
+	        <div class="float-left" style="float: left;">
+	            <span>Your Pages</span>
+	        </div>
+
+	        <div class="float-right" style="float: right;">
+	            <a class="hover-line" href="{{CREATE_PAGE_URL}}" data-href="?tab1=create_page">
+	                @page_create_label@
+	            </a>
+	        </div>
+
+	        <div class="float-clear"></div>
+	    </div>
+	    
+	    {{LIST_MANAGED_PAGES}}
+	</div>
+</div>
+
+<div class="float-right span49" style="margin-left: 25%">
+    <div class="list-wrapper">
+	    <div class="list-header">
+	        <div class="float-left" style="float: left;">
+	            <span>Your Groups</span>
+	        </div>
+
+	        <div class="float-right" style="float: right;">
+	            <a class="hover-line" href="{{CREATE_GROUP_URL}}" data-href="?tab1=create_group">
+	                @group_create_label@
+	            </a>
+	        </div>
+
+	        <div class="float-clear"></div>
+	    </div>
+	    
+	    {{LIST_MANAGED_GROUPS}}
+	</div>
+</div>
+
+<div class="float-clear"></div>

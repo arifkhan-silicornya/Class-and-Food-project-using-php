@@ -1,0 +1,90 @@
+<form class="update-general-settings" method="post">
+    <div class="form-container">
+        <div class="form-header">
+            @general_settings_label@
+        </div>
+        <div class="form-input-wrapper">
+            <label class="float-left span20">
+                @username_label@:
+            </label>
+            <div class="input float-left span70">
+                <input type="text" name="username" value="{{TIMELINE_USERNAME}}" autocomplete="off" onkeyup="SK_checkUsername(this.value,{{TIMELINE_ID}},'.check-username-result',true);">
+                <div class="check-username-result ajax-result"></div>
+            </div>
+            <div class="float-clear"></div>
+        </div>
+        <div class="form-input-wrapper">
+            <label class="float-left span20">
+                @pages_name_label@:
+            </label>
+            <div class="input float-left span70">
+                <input type="text" name="name" value="{{TIMELINE_NAME}}">
+            </div>
+            <div class="float-clear"></div>
+        </div>
+        <div class="form-input-wrapper">
+            <label class="float-left span20">
+                @about_label@:
+            </label>
+            <div class="input float-left span70">
+                <textarea class="auto-grow-input" valign="top" name="about">{{TIMELINE_ABOUT}}</textarea>
+            </div>
+            <div class="float-clear"></div>
+        </div>
+        <div class="form-input-wrapper">
+            <label class="float-left span20">
+                : Batch
+            </label>
+            <div class="input float-left span70">
+                <input type="text" name="address" value="{{TIMELINE_ADDRESS}}" autocomplete="off">
+            </div>
+            <div class="float-clear"></div>
+        </div>
+        <div class="form-input-wrapper">
+            <label class="float-left span20">
+                : Course Teacher
+            </label>
+            <div class="input float-left span70">
+                <input type="text" name="awards" value="{{TIMELINE_AWARDS}}" autocomplete="off">
+            </div>
+            <div class="float-clear"></div>
+        </div>
+
+
+        <div class="form-input-wrapper">
+            <button class="active">
+                <i class="icon-lightbulb progress-icon hide"></i> 
+                @save_changes_button@
+            </button>
+        </div>
+    </div>
+    <input name="timeline_id" value="{{TIMELINE_ID}}" type="hidden">
+</form>
+
+<script>
+$ (function ()
+{
+    $('form.update-general-settings').ajaxForm({
+        url: SK_source() + '?t=page&a=update',
+        
+        success: function (responseText) {
+            
+            if (responseText.status == 200) {
+                
+                if ( $('.success-message').length == 0 ) {
+                    $('.form-header').after('<div class="success-message hidden">@changes_saved@.</div>');
+                    $('.success-message').fadeIn('fast',function () {
+                            $(this).fadeOut(1500, function() {
+                                $(this).remove();
+                            });
+                        });
+                }
+                
+                setTimeout(function () {
+                    window.location = responseText.url;
+                }, 1000);
+            }
+        }
+    });
+});
+</script>

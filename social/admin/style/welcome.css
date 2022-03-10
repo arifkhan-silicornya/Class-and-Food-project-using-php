@@ -1,0 +1,176 @@
+h1,
+small {
+    color: #fff;
+    text-shadow: 0 0 2px rgba(0, 0, 0, 1)
+}
+
+body {
+    background: url(welcome.jpg) #000;
+    background-size: cover
+}
+
+a:hover {
+    text-decoration: none
+}
+
+small {
+    font-size: 21px
+}
+
+.footer-wrapper {
+    color: #dddedf;
+    text-shadow: 1px 0 0 rgba(0, 0, 0, .5)
+}
+
+.footer-wrapper a {
+    color: #fff
+}
+
+.footer-content {
+    border-color: rgba(0, 0, 0, .2)
+}
+
+.welcome-form-div {
+    position: fixed;
+    top: 25%;
+    left: 0;
+    right: 0
+}
+
+.welcome-form {
+    position: relative;
+    max-width: 280px;
+    color: #4e5665;
+    margin: 0 auto 20px;
+    padding-bottom: 2px;
+    border-radius: 2px;
+    left: -12px;
+    top: 201px;
+}
+
+.welcome-form form:nth-child(3) {
+    display: block
+}
+
+.welcome-form .html-logo {
+    position: absolute;
+    top: 12px;
+    left: 80px;
+    min-width: 40%;
+    
+    color: #000000;
+    font-size: 20px;
+    padding: 5px 20px 6px
+}
+
+.welcome-form .form-header {
+    color: #444;
+    font-weight: 500;
+    padding: 0;
+    border-bottom: 3px solid #29a8b7;
+    border-radius: 3px 3px 0 0
+}
+
+.welcome-form .form-tab {
+    display: inline-block;
+    background: #fff;
+    padding: 4px 10px 7px;
+    margin: 80px 0 0 3px;
+    font-size: 15px;
+    border-width: 1px 1px 0;
+    border-style: solid;
+    border-color: #29a8b7;
+    border-radius: 4px 4px 0 0
+}
+
+.welcome-form .form-tab:first-child {
+    margin-left: 6px
+}
+
+.welcome-form .active-tab {
+    background: #29a8b7;
+    color: #fff
+}
+
+.welcome-form .post-message {
+    background: #eff7b5;
+    color: #4e5665;
+    font-weight: 500;
+    padding: 8px;
+    border-bottom: 1px solid #dfeb8a;
+    border-radius: 3px 3px 0 0
+}
+
+.welcome-form .form-content {
+    padding: 8px 10px
+}
+
+.welcome-form .input-wrapper {
+    position: relative;
+    margin-bottom: 15px;
+    font-size: 15px
+}
+
+.welcome-form .input-wrapper img.captcha {
+    vertical-align: middle;
+    border-radius: 3px
+}
+
+.welcome-form input[type=password],
+.welcome-form input[type=text],
+.welcome-form textarea {
+    width: 94%;
+    background: rgba(255, 255, 255, .5);
+    color: #898f9c;
+    font-size: 15px;
+    margin: 0;
+    padding: 10px;
+    border: 1px solid #dcd2d2;
+    border-radius: 20px;
+
+}
+
+.welcome-form select {
+    width: 100%;
+    background: rgba(255, 255, 255, .5);
+    color: #898f9c;
+    font-size: 15px;
+    margin: 0;
+    border-color: rgba(255, 255, 255, .5)
+}
+
+.welcome-form button {
+    background: #3477c8;
+    padding: 10px 7px;
+    margin: 0;
+    width: 54%;
+    font-size: 15px;
+    margin-top: 4px;
+    border-radius: 20px;
+}
+
+.welcome-form .check-username-result {
+    position: absolute;
+    top: 10px;
+    right: 5px
+}
+
+.welcome-form .hr {
+    display: block;
+    background: rgba(0, 0, 0, .15);
+    padding: 1px 0 0;
+    margin: 0 20px
+}
+
+.welcome-form .form-footer {
+    font-size: 15px;
+    margin: 15px 0
+}
+
+@media only screen and (max-device-width:960px),
+only screen and (max-width:960px) {
+    .welcome-form-div
+    {
+        position: relative;
+    }
+}

@@ -1,0 +1,24 @@
+<div class="page-margin"></div>
+
+<div class="float-right span63">
+    <form class="list-wrapper hashtag-search-form" method="get" action="{{CONFIG_SITE_URL}}/index.php">
+        <div class="list-header">
+            @hashtag_search_header_label@
+        </div>
+
+        <div class="list-column">
+            <input class="query-input" type="text" name="query" placeholder="@hashtag_search_textarea_label@" style="width: 85%;"> 
+            <button>@search_button@</button>
+        </div>
+        
+        <input type="hidden" name="tab1" value="hashtag">
+    </form>
+
+    {{STORIES}}
+</div>
+
+{{SIDEBAR}}
+
+<div class="float-clear"></div>
+
+{{END}}

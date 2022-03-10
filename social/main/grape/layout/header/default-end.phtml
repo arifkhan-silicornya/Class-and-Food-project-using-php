@@ -1,0 +1,45 @@
+<script>
+function SK_headerSearch(query) {
+    $('.dropdown-more-container').hide();
+    $('.dropdown-notification-container').hide();
+    $('.notification-nav').removeClass('header-nav-active');
+    search_wrapper = $('.dropdown-search-container');
+    
+    if (query.length == 0) {
+        search_wrapper.hide();
+    }
+    else {
+        search_wrapper.show();
+        SK_progressIconLoader(search_wrapper.find('.search-header'));
+        
+        $.get(SK_source(), {t: 'search', a: 'header', q: query}, function (data) {
+            
+            if (data.status == 200) {
+                
+                if (data.html.length == 0) {
+                    search_wrapper
+                    .find('.search-list-wrapper')
+                        .html('<div class="no-wrapper">@no_result_found@</div>')
+                    .end().find('a.page-link')
+                            .hide();
+                } else {
+                    search_wrapper
+                        .find('.search-list-wrapper')
+                            .html(data.html)
+                        .end()
+                        .find('a.page-link')
+                            .attr('href', data.link).show();
+                }
+            }
+            
+            SK_progressIconLoader(search_wrapper.find('.search-header'));
+        });
+    }
+}
+function SK_moreToggle() {
+    $('.dropdown-search-container').hide();
+    $('.dropdown-notification-container').hide();
+    $('.notification-nav').removeClass('header-nav-active');
+    $('.dropdown-more-container').toggle();
+}
+</script>

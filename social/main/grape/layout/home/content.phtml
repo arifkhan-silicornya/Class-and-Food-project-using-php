@@ -1,0 +1,94 @@
+<div class="page-margin"></div>
+
+
+<div class="jhgihjgh" style="width: 21%;height: auto;float: right;margin-left: 32px;">
+      
+    <a style="font-size: 16px;margin-left: 89px;margin-top: 1px;font-weight: 500;" data-href="?tab1=terms&tab2=notice">Notice Board</a>
+    <p></p>
+   
+      {{CONFIG_AD_PLACE_HOME}}  
+</div>
+
+<div class="float-left span63">
+    {{ANNOUNCEMENTS}}
+
+    {{STORY_POSTBOX}}
+
+    {{STORIES}}
+</div>
+
+
+
+
+
+<div class="float-right span35">
+    <div class="short-profile-wrapper">
+        <div class="short-cover">
+            <img src="{{USER_COVER_URL}}" width="100%" alt="{{USER_NAME}}">
+
+            <a class="short-avatar" href="{{USER_URL}}" data-href="?tab1=timeline&id={{USER_USERNAME}}">
+                <img src="{{USER_AVATAR_URL}}" width="70px" alt="{{USER_NAME}}">
+            </a>
+        </div>
+
+        <div class="short-info">
+            <a class="short-name bold-500" href="{{USER_URL}}" data-href="?tab1=timeline&id={{USER_USERNAME}}">
+                {{USER_NAME}}
+            </a>
+
+            <br>
+
+            <span style="font-size: 11px;color: #828282;">@{{USER_USERNAME}}</span>
+        </div>
+    </div>
+    
+    {{STORY_POSTFILTERS}}
+    
+    {{SUGGESTIONS}}
+    
+    {{TRENDINGS}}
+    
+</div>
+
+
+
+
+<div class="float-clear"></div>
+
+<script>
+$(function() {
+    
+    setInterval(function() {
+        
+        if ($('.story-wrapper').length > 0)
+        {
+            element = $('.stories-container');
+            request_data = new Object();
+            request_data.t = 'post';
+            request_data.a = 'filter';
+            request_data.exclude_activity = 1;
+            request_data.before_id = $('.story-wrapper:first').attr('data-story-id');
+            
+            if (typeof(element.attr('data-story-type') != "undefined")) {
+                request_data.type = element.attr('data-story-type');
+            }
+            
+            if (typeof(element.attr('data-story-timeline') != "undefined")) {
+                request_data.timeline_id = element.attr('data-story-timeline');
+            }
+            
+            $.get(SK_source(), request_data, function(data) {
+                
+                if (data.status == 200) {
+                    $('.stories-wrapper').prepend(data.html);
+                }
+            });
+        }
+    }, 120000);
+});
+
+function closeAnnouncements() {
+    $('.announcement-container').remove();
+    $.get(SK_source(), {t: 'announcements', a: 'read'});
+}
+</script>

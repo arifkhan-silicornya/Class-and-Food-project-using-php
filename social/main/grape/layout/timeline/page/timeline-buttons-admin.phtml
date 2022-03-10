@@ -1,0 +1,65 @@
+<div class="timeline-buttons cover-resize-buttons">
+    <table border="0" width="100%" cellspacing="0" cellpadding="0">
+    <tr>
+        <td align="center" valign="middle">
+            <a onclick="SK_saveReposition();"><i class="icon-pushpin"></i> @save_position_label@</a>
+        </td>
+        <td align="center" valign="middle">
+            <a onclick="SK_cancelReposition();"><i class="icon-remove"></i> @cancel@</a>
+        </td>
+    </tr>
+    </table>
+    <form class="cover-position-form hidden" method="post">
+        <input class="cover-position" name="pos" value="0" type="hidden">
+        <input class="screen-width" name="width" value="920" type="hidden">
+        <input name="timeline_id" value="{{TIMELINE_ID}}" type="hidden">
+    </form>
+</div>
+<div class="timeline-buttons default-buttons">
+    <table border="0" width="100%" cellspacing="0" cellpadding="0">
+    <tr>
+        <td align="center" valign="middle">
+            {{LIKE_BUTTON}}
+        </td>
+
+
+        <td align="center" valign="middle">
+            <a onclick="javascript:$('.cover-image-input').click();">
+                <i class="icon-camera-retro"></i> 
+                @change_cover_label@
+            </a>
+        </td>
+
+    </tr>
+
+    <tr>
+
+
+        <td align="center" valign="middle">
+            <a href="{{SETTINGS_TAB_URL}}" data-href="?tab1=timeline&tab2=settings&id={{TIMELINE_USERNAME}}">
+                <i class="icon-gear"></i> 
+                @settings_label@
+            </a>
+        </td>
+
+        <td align="center" valign="middle">
+                <a onclick="$('.change-avatar-input').click();">
+                    <i class="icon-camera" title="@change_avatar_label@" onclick="$('.change-avatar-input').click();"></i>
+                    Change picture
+                </a>
+
+                <form class="change-avatar-form hidden" method="post" enctype="multipart/form-data" action="{{CONFIG_AJAX_PATH}}?t=avatar&a=post_upload">
+                    <input class="change-avatar-input hidden" type="file" name="image" accept="image/jpeg,image/png" onchange="javascript:$('form.change-avatar-form').submit();">
+                    <input name="timeline_id" value="{{TIMELINE_ID}}" type="hidden">
+                </form>
+
+        </td>
+
+    </tr>
+    </table>
+</div>
+
+<form class="cover-form hidden" method="post" enctype="multipart/form-data" action="ajax.php?t=cover&a=post_upload">
+    <input class="cover-image-input hidden" type="file" name="image" accept="image/jpeg,image/png" onchange="javascript:$('form.cover-form').submit();">
+    <input name="timeline_id" value="{{TIMELINE_ID}}" type="hidden">
+</form>

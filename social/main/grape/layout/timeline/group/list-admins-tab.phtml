@@ -1,0 +1,22 @@
+<div class="list-wrapper">
+    <div class="list-header">
+        @group_admins_label@
+    </div>
+
+    {{LIST_ADMIN_USERLISTS}}
+</div>
+
+<script>
+function SK_removeGroupAdmin(group_id, admin_id) {
+    $('.group-admin-' + admin_id).find('.remove-admin-btn').val('Removing..');
+    
+    $.post(SK_source() + '?t=group&a=remove_admin', {group_id: group_id, admin_id: admin_id}, function (data) {
+        
+        if (data.status == 200) {
+            $('.group-admin-' + admin_id).slideUp(function () {
+                $(this).remove();
+            });
+        }
+    });
+}
+</script>

@@ -1,0 +1,125 @@
+<form class="update-timeline-form" method="post">
+    <div class="form-container">
+        <div class="form-header">
+            @privacy_settings_label@
+        </div>
+        
+        {{FOLLOW_PRIVACY_ROWS}}
+
+        <div class="form-input-wrapper">
+            <label class="float-left span35">
+                @message_privacy_label@:
+            </label>
+
+            <div class="input float-left span55">
+                <select name="message_privacy">
+                    <option value="everyone" {{MESSAGE_PRIVACY_EVERYONE_SELECTED_ATTR}}>
+                        @everyone@
+                    </option>
+
+                    <option value="following" {{MESSAGE_PRIVACY_FOLLOWING_SELECTED_ATTR}}>
+                        {{PEOPLE_I_FOLLOW_LABEL}}
+                    </option>
+                </select>
+            </div>
+
+            <div class="float-clear"></div>
+        </div>
+
+        <div class="form-input-wrapper">
+            <label class="float-left span35">
+                @comment_privacy_label@:
+            </label>
+
+            <div class="input float-left span55">
+                <select name="comment_privacy">
+                    <option value="everyone" {{COMMENT_PRIVACY_EVERYONE_SELECTED_ATTR}}>
+                        @everyone@
+                    </option>
+
+                    <option value="following" {{COMMENT_PRIVACY_FOLLOWING_SELECTED_ATTR}}>
+                        {{PEOPLE_I_FOLLOW_LABEL}}
+                    </option>
+                </select>
+            </div>
+
+            <div class="float-clear"></div>
+        </div>
+
+        <div class="form-input-wrapper">
+            <label class="float-left span35">
+                @timeline_post_privacy_label@:
+            </label>
+
+            <div class="input float-left span55">
+                <select name="timeline_post_privacy">
+                    <option value="everyone" {{TIMELINE_POST_PRIVACY_EVERYONE_SELECTED_ATTR}}>
+                        @everyone@
+                    </option>
+
+                    <option value="following" {{TIMELINE_POST_PRIVACY_FOLLOWING_SELECTED_ATTR}}>
+                        {{PEOPLE_I_FOLLOW_LABEL}}
+                    </option>
+
+                    <option value="none" {{TIMELINE_POST_PRIVACY_NONE_SELECTED_ATTR}}>
+                        @no_one@
+                    </option>
+                </select>
+            </div>
+
+            <div class="float-clear"></div>
+        </div>
+
+        <div class="form-input-wrapper">
+            <label class="float-left span35">
+                @post_privacy@:
+            </label>
+
+            <div class="input float-left span55">
+                <select name="post_privacy">
+                    <option value="everyone" {{POST_PRIVACY_EVERYONE_SELECTED_ATTR}}>
+                        @everyone@
+                    </option>
+                    
+                    <option value="following" {{POST_PRIVACY_FOLLOWING_SELECTED_ATTR}}>
+                        {{PEOPLE_I_FOLLOW_LABEL}}
+                    </option>
+                </select>
+            </div>
+
+            <div class="float-clear"></div>
+        </div>
+
+        <div class="form-input-wrapper">
+            <button class="active">
+                <i class="icon-lightbulb progress-icon hide"></i> 
+                @save_changes_button@
+            </button>
+        </div>
+    </div>
+</form>
+
+<script>
+$('form.update-timeline-form').ajaxForm({
+    url: SK_source()+'?t=user&a=settings',
+    
+    beforeSend: function () {
+        SK_progressIconLoader($('form.update-timeline-form').find('button'));
+    },
+    
+    success: function (responseText) {
+        
+        if (responseText.status == 200) {
+            
+            $('.form-header').after('<div class="success-message hidden">@changes_saved@</div>');
+            $('.success-message').fadeIn('fast',function () {
+                    $(this).fadeOut(1500, function() {
+                        $(this).remove();
+                    });
+                });
+        }
+        
+        SK_progressIconLoader($('form.update-timeline-form').find('button'));
+    }
+});
+</script>

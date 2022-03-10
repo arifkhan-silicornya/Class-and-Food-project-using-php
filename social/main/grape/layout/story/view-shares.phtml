@@ -1,0 +1,19 @@
+<div class="window-container">
+    <div class="window-background" onclick="SK_closeWindow();"></div>
+    
+    <div class="window-wrapper">
+        <div class="window-header-wrapper">
+            <i class="icon-share-alt"></i> 
+            
+            @shared_people_label@
+
+            <span class="window-close-btn" title="Close window" onclick="SK_closeWindow();">
+                <i class="icon-remove"></i>
+            </span>
+        </div>
+
+        <div class="window-content-wrapper">
+            {{LIST_SHARES}}
+        </div>
+    </div>
+</div>

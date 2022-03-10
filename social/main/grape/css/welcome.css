@@ -1,0 +1,261 @@
+.wc-feat-float .feat-msg,
+h1 {
+    text-shadow: 0 0 1px rgba(255, 255, 255, .3)
+}
+
+.wc-feat-float {
+    color: #333;
+    margin: 50px 0 0
+}
+
+.wc-feat-float i {
+    width: 72px;
+    float: left;
+    margin: 0
+}
+
+.wc-feat-float .feat-msg {
+    width: 478px;
+    float: left;
+    font-size: 14px;
+    margin: 2px 0 0
+}
+
+.wc-feat-float .feat-msg strong {
+    display: block;
+    font-size: 17px
+}
+
+.wc-feat-float .feat-msg p {
+    margin: 9px 0 0;
+    padding: 0
+}
+
+input[type=checkbox] {
+    display: inline-block;
+    vertical-align: top;
+    background: #fff;
+    color: #4b4b4b;
+    padding: 2px
+}
+
+.fb-button {
+    max-width: 215px;
+    background: #203f81;
+    color: #fff;
+    font-size: 15px;
+    margin: 15px 0;
+    border: 1px solid #0f2d6c;
+    border-radius: 3px
+}
+
+.fb-button a {
+    display: block;
+    color: #fff
+}
+
+.fb-button i {
+    display: inline-block;
+    padding: 6px 15px 6px 0;
+    margin: 4px 8px 4px 0;
+    border-right: 1px solid #0f2d6c;
+    border-radius: 2px 0 0 2px
+}
+
+.fb-button span {
+    display: inline-block;
+    border-radius: 3px 0 0 3px;
+    padding: 7px 0 8px
+}
+
+.header-wrapper,
+.welcome-form form {
+    display: none
+}
+
+body {
+    background: url(../images/welcome.jpg) #000;
+    background-size: cover
+}
+
+h1 {
+    color: #333
+}
+
+small {
+    color: #fff;
+    font-size: 21px;
+    text-shadow: 0 0 2px rgba(0, 0, 0, 1)
+}
+
+.header-site-logo img {
+    height: 22px
+}
+
+.welcome-form-div {
+    position: relative;
+    top: 20%;
+    left: 0;
+    right: 0
+}
+
+.welcome-form {
+    left: 332px;
+    top: 40px;
+    position: relative;
+    max-width: 370px;
+   
+    color: #4e5665;
+    margin: 0 auto 20px;
+    padding-bottom: 2px;
+    border-radius: 24px;
+    border-color: #000000;
+    border-width: 5px;
+    
+}
+
+.welcome-form form:nth-child(3) {
+    display: block
+}
+
+.welcome-form .html-logo {
+    position: absolute;
+    top: 12px;
+    left: 70px;
+    min-width: 50%;
+    background: #47ba76;
+    color: white;
+    font-size: 20px;
+    padding: 5px 20px 6px
+}
+
+.welcome-form .form-header {
+    color: #444;
+    font-weight: 500;
+    padding: 0;
+   margin-bottom: 6px;
+    border-radius: 3px 3px 0 0
+}
+
+.welcome-form .form-tab {
+    width: 118px;
+    display: inline-block;
+    background: #ffffff00;
+    padding: 4px 10px 7px;
+    margin: 30px 0 0 20px;
+    font-size: 20px;
+    
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.15);
+    border-radius: 4px 4px 0 0
+}
+
+.welcome-form .form-tab:first-child {
+    margin-left: 28px
+}
+
+.welcome-form .active-tab {
+    background: #ffffff00;
+    color: #000000;
+    border-bottom: 3px solid #4ed490;
+}
+
+.welcome-form .post-message {
+    background: #eff7b5;
+    color: #4e5665;
+    font-weight: 500;
+    padding: 8px;
+    border-bottom: 1px solid #dfeb8a;
+    border-radius: 3px 3px 0 0
+}
+
+.welcome-form .form-content {
+    padding: 8px 10px
+}
+
+.welcome-form .input-wrapper {
+    position: relative;
+    margin-bottom: 15px;
+    font-size: 15px
+}
+
+.welcome-form .input-wrapper img.captcha {
+    vertical-align: middle;
+    border-radius: 3px
+}
+
+.welcome-form input[type=password],
+.welcome-form input[type=text],
+.welcome-form textarea {
+    width: 94%;
+    background: white;
+    color: #898f9c;
+    font-size: 15px;
+    margin: 0;
+    padding: 10px;
+    border-color: rgba(255, 255, 255, .5);
+    border-radius: 54px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08)
+}
+
+.welcome-form select {
+    width: 100%;
+    background: rgba(255, 255, 255, .5);
+    color: #898f9c;
+    font-size: 15px;
+    margin: 0;
+    border-color: rgba(199, 199, 199, .34)
+}
+
+.welcome-form button {
+    background: #3c7fb4;
+    background: #000000;
+    padding: 10px 7px;
+    margin: 0;
+    width: 63%;
+    font-size: 15px;
+    border-radius: 20px;
+}
+
+.welcome-form .check-username-result {
+    position: absolute;
+    top: 10px;
+    right: 5px
+}
+
+.welcome-form .hr {
+    display: block;
+    background: rgba(0, 0, 0, .15);
+    padding: 1px 0 0;
+    margin: 0 20px
+}
+
+.welcome-form .form-footer {
+    font-size: 15px;
+    margin: 15px 0
+}
+
+.footer-wrapper {
+    display: none;
+    color: #f2f2f2;
+    text-shadow: 1px 0 0 rgba(0, 0, 0, .5)
+}
+
+.footer-wrapper a {
+    color: #fff
+}
+
+.footer-content {
+    border-color: rgba(0, 0, 0, .2)
+}
+
+@media only screen and (max-device-width:1920px),
+only screen and (max-width:1920px) {
+    .header-site-logo {
+        display: inline
+    }
+
+    .welcome-form-div {
+        position: relative;
+    }
+}

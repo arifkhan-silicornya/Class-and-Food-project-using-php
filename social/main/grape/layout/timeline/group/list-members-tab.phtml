@@ -1,0 +1,34 @@
+<div class="list-wrapper">
+    <div class="list-header">
+        @group_members_label@
+    </div>
+    
+    {{LIST_MEMBER_USERLISTS}}
+</div>
+
+<script>
+function SK_removeGroupMember(group_id, member_id) {
+    $('.group-member-' + member_id).find('.remove-member-btn').val('Removing..');
+    
+    $.post(SK_source() + '?t=group&a=remove_member', {group_id: group_id, member_id: member_id}, function (data) {
+        
+        if (data.status == 200) {
+            $('.group-member-' + member_id).slideUp(function () {
+                $(this).remove();
+            });
+        }
+    });
+}
+
+function SK_addGroupAdmin(group_id, admin_id) {
+    $('.group-member-' + admin_id).find('.add-admin-btn').val('Making..');
+    
+    $.post(SK_source() + '?t=group&a=add_admin', {group_id: group_id, admin_id: admin_id}, function (data) {
+        if (data.status == 200) {
+            $('.group-member-'+admin_id).slideUp(function () {
+                $(this).remove();
+            });
+        }
+    });
+}
+</script>

@@ -1,0 +1,39 @@
+<div id="comment_{{POST_COMMENT_ID}}" class="comment-wrapper comment_{{POST_COMMENT_ID}}" data-comment-id="{{POST_COMMENT_ID}}">
+    <table border="0" width="100%" cellspacing="0" cellpadding="0" class="commentTable">
+    <tr>
+        <td width="40px" align="left" valign="top">
+            <a href="{{POST_COMMENT_USER_URL}}">
+                <img class="avatar" src="{{POST_COMMENT_USER_THUMBNAIL_URL}}" width="32px" height="32px">
+            </a>
+        </td>
+        
+        <td align="left" valign="top">
+            <div class="comment-content">
+                <a class="name" href="{{POST_COMMENT_USER_URL}}">
+                    {{POST_COMMENT_USER_NAME}}
+                </a>
+
+                <span class="comment-text">
+                    {{POST_COMMENT_TEXT}}
+                </span>
+                
+                {{POST_COMMENT_CONTROL_BUTTONS}}
+
+                <div class="other-data">
+                    <span class="time ajax-time" title="{{POST_COMMENT_TIME}}">
+                        {{POST_COMMENT_TIME}}
+                    </span>
+
+                    <abbr class="space1">&#183;</abbr>
+
+                    {{POST_COMMENT_LIKE_ACTIVITY}}
+
+                    <abbr class="space1">&#183;</abbr>
+
+                    {{POST_COMMENT_LIKE_BUTTON}}
+                </div>
+            </div>
+        </td>
+    </tr>
+    </table>
+</div>

@@ -1,0 +1,264 @@
+<div class="page-margin"></div>
+<div class="float-right span74" style="float: right;">
+    <div class="message-container">
+        <div class="container-header">
+            <div class="float-left" style="float: left;">
+                <i class="icon-comments"></i> @messages_label@ &nbsp; <span style="color: #00dcff;font-size: 16px;" id="recipient-name" class="hidden"></span>
+            </div>
+            
+            <div class="float-right">
+                 
+                
+                <i class="icon-ok progress-icon hide"></i>
+            </div>
+            
+            <div class="float-clear"></div>
+        </div>
+        
+        <div class="text-messages-container">
+            <div class="view-more-wrapper cursor-hand bold-500 hidden" style="width: 173px;margin-left: 41%;background-color: #3367d6;border-radius: 20px;color: #ffffff;" align="center" onclick="SK_getPreviousMessages({{PREV_MSG_RECIPIENT_ID}});">
+                <i class="icon-arrow-up progress-icon hide"></i>
+                @view_previous_messages_label@
+            </div>
+            
+            <div class="text-messages-wrapper">
+                <div class="no-wrapper" align="center">
+                    @no_messages_to_show_label@
+                </div>
+            </div>
+        </div>
+        
+        <div class="textarea-container" align="center">
+            <form class="send-message-form" method="post" enctype="multipart/form-data">
+                <textarea class="message-textarea auto-grow-input" name="text" placeholder="@write_a_message_label@..." onkeyup="SK_sendMessageForm(event);" onfocus="SK_sendMessageForm(event);" data-height="22" disabled></textarea>
+
+                <input class="message-photo-input hidden" name="photos[]" type="file" accept="image/jpeg,image/png" onchange="SK_uploadMessageForm();">
+
+                <div class="options-wrapper">
+                    <i class="fa fa-picture-o progress-icon cursor-hand" style="color: #1cc2dc;" title="@upload_photo@" valign="middle" onclick="$('.message-photo-input').click();"></i>
+                </div>
+
+                <input name="timeline_id" value="{{USER_ID}}" type="hidden">
+
+                <input id="recipient-id" name="recipient_id" value="0" type="hidden">
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="float-left span25" style="float: left;">
+    <div class="message-recipient-wrapper">
+        <div class="wrapper-header">
+            <input class="recipient-search" type="text" placeholder="@messages_search_label@" onkeyup="SK_getRecipients(this.value);">
+
+            <i class="icon-search cursor-hand" onclick="$('.recipient-search').focus();"></i>
+        </div>
+
+        <div class="recipient-list-wrapper" data-limit="10" data-query="">
+            {{LIST_RECIPIENTS}}
+        </div>
+    </div>
+    
+    {{CONFIG_AD_PLACE_MESSAGES}}
+</div>
+
+<div class="float-clear"></div>
+
+<script>
+$(function() {
+    setInterval('SK_getNewMessages();', 7500);
+    setInterval('SK_updateRecipients();', 30000);
+    
+    $('form.send-message-form').ajaxForm({
+        url: SK_source() + '?t=message&a=send_message',
+        
+        beforeSend: function() {
+            $('.message-textarea').attr('disabled',true);
+        },
+        
+        success: function(responseText) {
+            
+            if (responseText.status == 200) {
+                
+                if ($('.text-message-wrapper').length == 0) {
+                    $('.text-messages-wrapper').html(responseText.html);
+
+                } else {
+                    $('.text-messages-wrapper').append(responseText.html);
+                }
+                
+                $('.text-messages-container').scrollTop($('.text-messages-container').prop('scrollHeight'));
+            }
+            
+            $('form.send-message-form').clearForm();
+            $('.message-textarea').val('').attr('disabled', false).keyup().focus();
+            
+            SK_progressIconLoader($('.textarea-container').find('.options-wrapper'));
+        }
+    });
+    
+    SK_getMessages({{RECIPIENT_ID}},'{{RECIPIENT_NAME}}');
+});
+
+function SK_updateRecipients() {
+    main_el = $('.recipient-list-wrapper');
+    query = main_el.attr('data-query');
+    limit = (main_el.attr('data-limit') * 1) * 2;
+
+    if ($('.recipient-search').val().length == 0) {
+        
+        $.get(SK_source(), {t: 'search', a: 'recipients', q: query, limit: limit}, function (data) {
+            
+            if (data.status == 200) {
+                $('.recipient-list-wrapper').html(data.html);
+                updateCountAlert();
+            }
+        });
+    }
+}
+
+function SK_getRecipients(query) {
+    
+    $.get(SK_source(), {t: 'search', a: 'recipients', q: query}, function (data) {
+        
+        if (data.status == 200) {
+            $('.recipient-list-wrapper')
+                .attr('data-query', query)
+                .html(data.html);
+            updateCountAlert();
+        }
+    });
+}
+
+function SK_getMoreRecipients() {
+    main_el = $('.recipient-list-wrapper');
+    view_more_el = main_el.find('.view-more-wrapper');
+    limit = (main_el.attr('data-limit') * 1) * 2;
+    query = main_el.attr('data-query');
+    
+    SK_progressIconLoader(view_more_el);
+    view_more_el.find('.label').text('@loading@');
+    
+    $.get(SK_source(), {t: 'search', a: 'recipients', q: query, limit: limit}, function (data)
+    {
+        main_el.attr('data-limit', limit);
+        $('.recipient-list-wrapper').html(data.html);
+        updateCountAlert();
+    });
+}
+
+function SK_getMessages(recipient_id,recipient_name) {
+    message_container = $('.message-container');
+    container_header = message_container.find('.container-header');
+    text_messages_container = $('.text-messages-container');
+    text_messages_wrapper = $('.text-messages-wrapper');
+    textarea_wrapper = $('.message-textarea');
+    view_more_wrapper = message_container.find('.view-more-wrapper');
+    
+    $('#recipient-id').val(recipient_id);
+    $('#recipient-name').text(recipient_name).show();
+    document_title = recipient_name;
+    document.title = document_title;
+    
+    textarea_wrapper.attr('disabled', true);
+    $(document).scrollTop(0);
+    
+    SK_progressIconLoader(container_header);
+    
+    $('#message_recipient_' + recipient_id)
+        .find('.update-alert').hide();
+    
+    $.get(SK_source(), {t: 'message', a: 'load_messages', recipient_id: recipient_id}, function (data) {
+        
+        if (data.status == 200) {
+            text_messages_wrapper.html(data.html);
+            
+            if (data.html.length == 0) {
+                text_messages_wrapper.html('<div align="center" style="color: #898f9c; margin-top: 12px;">@no_messages_to_show_label@</div>');
+                view_more_wrapper.hide();
+            } else {
+                view_more_wrapper.attr('onclick', 'SK_getPreviousMessages(' + recipient_id + ');').show();
+            }
+            
+            if (data.reply_ability_status == true) {
+                textarea_wrapper.attr({'placeholder':'@write_a_message_label@...','disabled':false}).focus();
+                $('.options-wrapper').show();
+            } else {
+                textarea_wrapper.attr('placeholder', '@cannot_reply_to_conversation@');
+                $('.options-wrapper').hide();
+            }
+            
+            view_more_wrapper.show();
+        }
+        
+        text_messages_container.scrollTop(text_messages_container.prop('scrollHeight'));
+        SK_progressIconLoader(container_header);
+    });
+}
+
+function SK_getNewMessages() {
+    text_messages_container = $('.text-messages-container');
+    text_messages_wrapper = $('.text-messages-wrapper');
+    textarea_wrapper = $('.message-textarea');
+    
+    recipient_id = $('#recipient-id').val();
+    
+    $.get(SK_source(), {t: 'message', a: 'load_new_messages', recipient_id: recipient_id}, function (data) {
+        
+        if (data.status == 200) {
+            text_messages_wrapper.append(data.html);
+            text_messages_container.scrollTop(text_messages_container.prop('scrollHeight'));
+            
+            if (!textarea_wrapper.is(':focus')) {
+                document.title = '(@chat_new_update_alert@) ' + document_title;
+            }
+        }
+    });
+}
+
+function SK_getPreviousMessages(recipient_id) {
+    view_more_wrapper = $('.message-container').find('.view-more-wrapper');
+    before_message_id = $('.text-message-wrapper:first').attr('data-message-id');
+    SK_progressIconLoader(view_more_wrapper);
+    
+    $.get(SK_source(), {t: 'message', a: 'load_previous_messages', recipient_id: recipient_id, before_message_id: before_message_id}, function (data) {
+        
+        if (data.status == 200) {
+            $('.text-messages-wrapper').prepend(data.html);
+            view_wrapper_detach = $('.view-more-wrapper').detach();
+            $('.text-messages-container').prepend(view_wrapper_detach);
+        } else {
+            view_more_wrapper.hide();
+        }
+        
+        SK_progressIconLoader(view_more_wrapper);
+    });
+}
+
+function SK_sendMessageForm(e) {
+    document.title = document_title;
+    
+    if (e.keyCode == 13 && e.shiftKey == 0) {
+        e.preventDefault();
+        $('form.send-message-form').submit();
+        SK_progressIconLoader($('.textarea-container').find('.options-wrapper'));
+    }
+}
+
+function SK_uploadMessageForm() {
+    document.title = document_title;
+    $('form.send-message-form').submit();
+    SK_progressIconLoader($('.textarea-container').find('.options-wrapper'));
+}
+
+function SK_removeMsg(id) {
+    $.post(SK_source() + '?t=message&a=delete', {message_id: id}, function (data) {
+        
+        if (data.status == 200) {
+            $('#message_' + id).slideUp(function () {
+                $(this).remove();
+            });
+        }
+    });
+}
+</script>

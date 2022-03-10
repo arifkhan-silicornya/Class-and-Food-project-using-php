@@ -1,0 +1,23 @@
+<div class="list-column potential-admin-{{LIST_PA_ID}}">
+    <table border="0" width="100%" cellspacing="0" cellpadding="0">
+        <tr>
+        <td width="38px" align="left" valign="middle">
+            <a href="{{LIST_PA_URL}}" data-href="?tab1=timeline&id={{LIST_PA_USERNAME}}">
+                <img width="32px" height="32px" class="radius100" src="{{LIST_PA_THUMBNAIL_URL}}" alt="{{LIST_PA_NAME}}">
+            </a>
+        </td>
+        <td align="left" valign="middle">
+            <a class="bold-500" href="{{LIST_PA_URL}}" data-href="?tab1=timeline&id={{LIST_PA_USERNAME}}">
+                {{LIST_PA_NAME}}
+            </a>
+        </td>
+        <td align="right" valign="middle">
+            <select class="admin-role">
+                <option value="admin">@admin@</option>
+                <option value="editor">@editor@</option>
+            </select>
+            <input class="column-btn add-btn" type="submit" value="@add@" onclick="SK_addAdmin({{TIMELINE_ID}},{{LIST_PA_ID}});">
+        </td>
+        </tr>
+    </table>
+</div>

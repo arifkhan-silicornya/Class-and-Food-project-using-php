@@ -1,0 +1,71 @@
+<div class="list-wrapper list-admins">
+    <div class="list-header">
+        @pages_admin_roles_label@
+    </div>
+    
+    {{ADMINS_LIST}}
+
+    <div class="list-column">
+        @admin_editor_difference@
+    </div>
+</div>
+
+<div class="list-wrapper list-potentials">
+    <div class="list-header">
+        @pages_add_admins_label@
+    </div>
+    
+    {{POTENTIAL_ADMINS_LIST}}
+</div>
+
+<script>
+function SK_changeAdminRole(page_id, admin_id, admin_role) {
+    
+    $.post(SK_source() + '?t=page&a=add_admin', {page_id: page_id, admin_id: admin_id, admin_role: admin_role}, function (data) {
+        
+        if (data.status == 200) {
+            
+            if ($('.list-popup-alert').length == 0) {
+                $('.list-admins .list-header').after('<div class="list-popup-alert hidden">@changes_saved@</div>');
+            }
+            
+            $('.list-popup-alert').fadeIn('fast');
+        }
+        else {
+            $('.list-popup-alert').fadeOut('fast', function () {
+                $(this).remove();
+            });
+        }
+    });
+}
+
+function SK_addAdmin(page_id, admin_id) {
+    admin_role = $('.potential-admin-'+admin_id).find('select.admin-role').val();
+    $('.potential-admin-'+admin_id).find('.add-btn').val('@adding@...');
+    
+    $.post(SK_source() + '?t=page&a=add_admin', {page_id: page_id, admin_id: admin_id, admin_role: admin_role}, function (data) {
+        
+        if (data.status == 200) {
+            $('.potential-admin-'+admin_id).find('.add-btn').val('@added@');
+        }
+        else {
+            $('.list-popup-alert').fadeOut('fast', function () {
+                $(this).remove();
+            });
+        }
+    });
+}
+
+function SK_removeAdmin(page_id, admin_id) {
+    $('.page-admin-'+admin_id).find('.remove-btn').val('@removing@...');
+    
+    $.post(SK_source() + '?t=page&a=remove_admin', {page_id: page_id, admin_id: admin_id},function (data) {
+        
+        if (data.status == 200) {
+            $('.page-admin-' + admin_id).slideUp(function () {
+                $(this).remove();
+            });
+        }
+    });
+}
+</script>

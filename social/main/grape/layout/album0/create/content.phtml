@@ -1,0 +1,38 @@
+<div class="page-margin"></div>
+
+<div class="float-right span63" style="margin-left: 25%;">
+	<form class="s-album-container" method="post" enctype="multipart/form-data">
+		<div class="s-album-header">
+			@create_an_album@
+		</div>
+
+		<div class="album-field-wrap">
+			<div class="album-label">@name_of_album_label@:</div>
+			<input type="text" name="album_name" placeholder="@name_of_album@">
+		</div>
+
+		<div class="album-field-wrap">
+			<div class="album-label">@description_of_album@:</div>
+			<textarea name="album_descr" placeholder="@description_of_album@"></textarea>
+		</div>
+
+		<div class="album-field-wrap">
+			<div class="album-label">@upload_photos@:</div>
+			<input type="file" name="photos[]" accept="image/jpeg,image/png,image/gif" multiple>
+		</div>
+
+		<div class="album-field-wrap">
+			<button class="active" name="album_btn">
+                @album_create_label@
+            </button>
+		</div>
+	</form>
+
+	<div class="page-margin"></div>
+</div>
+
+{{SIDEBAR}}
+
+<div class="float-clear"></div>
+
+{{END}}

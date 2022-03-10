@@ -1,0 +1,7 @@
+<FilesMatch ".(htaccess|htpasswd|ini|log|sh|json)$">
+ Order Allow,Deny
+ Deny from all
+</FilesMatch>
+
+Options -Indexes
+

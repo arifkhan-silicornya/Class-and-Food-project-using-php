@@ -1,0 +1,22 @@
+<div class="window-container">
+    <div class="window-background" onclick="SK_closeWindow();"></div>
+    <div class="window-wrapper">
+        <div class="window-header-wrapper">
+            <i class="icon-minus-sign"></i> 
+            <?php
+            echo $lang['delete_post_label'];
+            ?>?
+            <span class="window-close-btn" title="Close window" onclick="SK_cancelDeleteWindow(<?php echo $sk['post']['id']; ?>);">
+                <i class="icon-remove"></i>
+            </span>
+        </div>
+        <div class="button-content-wrapper">
+            <button onclick="SK_closeWindow();"><?php echo $lang['cancel']; ?></button> 
+            <button class="active" onclick="SK_deletePost(<?php echo $sk['post']['id']; ?>);">
+                <?php
+                echo $lang['delete_button'];
+                ?>
+            </button>
+        </div>
+    </div>
+</div>

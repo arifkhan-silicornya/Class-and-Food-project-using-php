@@ -1,0 +1,29 @@
+<div class="list-column page-admin-{{LIST_ADMIN_ID}}">
+    <table border="0" width="100%" cellspacing="0" cellpadding="0">
+    <tr>
+        <td width="38px" align="left" valign="middle">
+            <a href="{{LIST_ADMIN_URL}}" data-href="?tab1=timeline&id={{LIST_ADMIN_USERNAME}}">
+                <img width="32px" height="32px" class="radius100" src="{{LIST_ADMIN_THUMBNAIL_URL}}" alt="{{LIST_ADMIN_NAME}}">
+            </a>
+        </td>
+        
+        <td align="left" valign="middle">
+            <a class="bold-500" href="{{LIST_ADMIN_URL}}" data-href="?tab1=timeline&id={{LIST_ADMIN_USERNAME}}">
+                {{LIST_ADMIN_NAME}}
+            </a>
+        </td>
+        
+        <td align="right" valign="middle">
+            <select onchange="SK_changeAdminRole({{TIMELINE_ID}},{{LIST_ADMIN_ID}},this.value);">
+                <option value="admin" {{LIST_ADMIN_SELECTED_ATTR}}>
+                    @admin@
+                </option>
+                <option value="editor" {{LIST_EDITOR_SELECTED_ATTR}}>
+                    @editor@
+                </option>
+            </select>
+            <input class="column-btn remove-btn" type="submit" value="@remove@" onclick="SK_removeAdmin({{TIMELINE_ID}},{{LIST_ADMIN_ID}});">
+        </td>
+    </tr>
+    </table>
+</div>

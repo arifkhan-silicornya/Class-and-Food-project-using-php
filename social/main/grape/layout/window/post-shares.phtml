@@ -1,0 +1,54 @@
+<div class="window-container">
+    <div class="window-background" onclick="SK_closeWindow();"></div>
+    <div class="window-wrapper">
+        <div class="window-header-wrapper">
+            <i class="icon-share-alt"></i> 
+            <?php
+            echo $lang['shared_people_label'];
+            ?>
+            <span class="window-close-btn" title="Close window" onclick="SK_closeWindow();">
+                <i class="icon-remove"></i>
+            </span>
+        </div>
+        <div class="window-content-wrapper">
+            <?php
+            if (SK_countPostShares($sk['post']['id']) == 0) {
+            ?>
+            <div class="no-content-wrapper" align="center">
+                <?php echo $lang['no_shares_label']; ?>
+            </div>
+            <?php
+            } else {
+                
+                foreach (SK_getPostShares($sk['post']['id'],true) as $shared_people) {
+            ?>
+            <div class="window-list-wrapper">
+                <table border="0" width="100%" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td width="40px" align="left" valign="middle">
+                        <a href="<?php echo $shared_people['url']; ?>">
+                            <img class="avatar" src="<?php echo $shared_people['thumbnail_url']; ?>" width="32px" alt="<?php echo $shared_people['name']; ?>">
+                        </a>
+                    </td>
+                    <td align="left" valign="middle">
+                        <a class="name" href="<?php echo $shared_people['url']; ?>">
+                            <?php
+                            echo $shared_people['name'];
+                            ?>
+                        </a>
+                    </td>
+                    <td class="window-btn" align="right" valign="middle">
+                        <?php
+                        echo SK_getFollowButton($shared_people['id']);
+                        ?>
+                    </td>
+                </tr>
+                </table>
+            </div>
+            <?php
+                }
+            }
+            ?>
+        </div>
+    </div>
+</div>

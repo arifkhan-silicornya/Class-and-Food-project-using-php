@@ -1,0 +1,1 @@
+{"Only for Verified Users":{"tag":"select","name":"verified_only","options":["No","Yes"],"info":"Allow music upload only for verified users"},"Max File Upload Limit":{"tag":"select","name":"max_upload_limit","options":{"2":"2 MB","5":"5 MB","10":"10 MB","15":"15 MB","20":"20 MB","25":"25 MB","30":"30 MB","50":"50 MB","100":"100 MB"},"info":"Maximum file size limit of mp4 file"}}

@@ -1,0 +1,37 @@
+<div id="comment_{{COMMENT_ID}}" class="comment-wrapper comment_{{COMMENT_ID}}" data-comment-id="{{COMMENT_ID}}">
+    <table border="0" width="100%" cellspacing="0" cellpadding="0" class="commentTable">
+    <tr>
+        <td width="40px" align="left" valign="top">
+            <a href="{{COMMENT_TIMELINE_URL}}" data-href="?tab1=timeline&id={{COMMENT_TIMELINE_USERNAME}}">
+                <img class="avatar" src="{{COMMENT_TIMELINE_THUMBNAIL_URL}}" width="32px" height="32px">
+            </a>
+        </td>
+        
+        <td align="left" valign="top">
+            <div class="comment-content">
+                {{COMMENT_TIMELINE_LINK}}
+
+                <span class="comment-text">
+                    {{COMMENT_TEXT}}
+                </span>
+                
+                {{COMMENT_CONTROL_BUTTONS}}
+
+                <div class="other-data">
+                    <span class="time ajax-time" title="{{COMMENT_TIME}}">
+                        {{COMMENT_TIME}}
+                    </span>
+
+                    <abbr class="space1">&#183;</abbr>
+
+                    {{COMMENT_LIKE_ACTIVITY}}
+
+                    <abbr class="space1">&#183;</abbr>
+
+                    {{COMMENT_LIKE_BUTTON}}
+                </div>
+            </div>
+        </td>
+    </tr>
+    </table>
+</div>

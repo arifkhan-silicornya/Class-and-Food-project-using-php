@@ -1,0 +1,10 @@
+<script>
+$('form.search-form').submit(function() {
+    query = $('.query-input').val();
+    $(this)
+        .attr('action', '{{CONFIG_SITE_URL}}/search/' + query)
+        .find('.query-input').attr({'name':'','value':''})
+        .end()
+        .find('input[type=hidden]').remove();
+});
+</script>

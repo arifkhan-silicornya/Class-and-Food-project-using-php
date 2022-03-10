@@ -1,0 +1,42 @@
+<div class="dropdown-notification-container">
+    <div class="dropdown-notification-wrapper">
+        <div class="dropdown-notification-content float-right" style="float: right;">
+            <div class="notification-header">
+                <i class="icon-globe progress-icon hide"></i>
+                @notification_header_label@
+            </div>
+            
+            <div class="notification-list-wrapper"></div>
+        </div>
+        
+        <div class="float-clear"></div>
+    </div>
+</div>
+
+<div class="dropdown-more-container">
+    <div class="dropdown-more-wrapper">
+        <div class="dropdown-more-content float-right" style="float: right;">
+            <div class="more-header">@more_header_label@</div>
+            
+            <div class="more-list-wrapper">
+                <a class="more-list" href="{{USER_URL}}" data-href="?tab1=timeline&id={{USER_USERNAME}}">
+                    <i class="icon icon-user"></i> @my_profile_label@
+                </a>
+                
+                <a class="more-list" href="{{MORE_PAGE_URL}}" data-href="?tab1=more">
+                    <i class="icon icon-reorder"></i> @my_pages_groups_label@
+                </a>
+                
+                <a class="more-list" href="{{SETTINGS_PAGE_URL}}" data-href="?tab1=settings">
+                    <i class="icon icon-gear"></i> @more_settings_label@
+                </a>
+                
+                <a class="more-list" href="{{LOGOUT_URL}}">
+                    <i class="icon icon-signout"></i> @logout@
+                </a>
+            </div>
+        </div>
+        
+        <div class="float-clear"></div>
+    </div>
+</div>

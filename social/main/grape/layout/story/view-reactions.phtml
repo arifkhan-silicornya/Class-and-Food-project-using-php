@@ -1,0 +1,89 @@
+<div class="window-container">
+    <div class="window-background" onclick="SK_closeWindow();"></div>
+
+    <div class="reaction-wrapper">
+        <div class="reaction-header-wrapper">
+            <div class="reaction-header-tab selected-tab" title="All" onclick="viewReactions('all', {{REACTION_STORY_ID}}, this);">
+                All
+            </div>
+
+            <abbr class="space1">&#183;</abbr>
+
+            <div class="reaction-header-tab blue-tab" title="Like" onclick="viewReactions('like', {{REACTION_STORY_ID}}, this);">
+                <img src="assets/imgs/reaction_like.png" width="13px" style="display:inline-block;vertical-align:top;margin-top:2px;">
+                {{STORY_REACTION_LIKES_NUM}}
+            </div>
+
+            <abbr class="space1">&#183;</abbr>
+
+            <div class="reaction-header-tab red-tab" title="Clap" onclick="viewReactions('love', {{REACTION_STORY_ID}}, this);">
+                <img src="assets/imgs/reaction_clap.png" width="13px" style="display:inline-block;vertical-align:top;margin-top:2px;">
+                Clap
+            </div>
+
+            <abbr class="space1">&#183;</abbr>
+
+            <div class="reaction-header-tab yellow-tab" title="Curious" onclick="viewReactions('haha', {{REACTION_STORY_ID}}, this);">
+                <img src="assets/imgs/reaction_curious.png" width="13px" style="display:inline-block;vertical-align:top;margin-top:2px;">
+                Curious
+            </div>
+
+            <abbr class="space1">&#183;</abbr>
+
+            <div class="reaction-header-tab yellow-tab" title="Idea" onclick="viewReactions('wow', {{REACTION_STORY_ID}}, this);">
+                <img src="assets/imgs/reaction_idea.png" width="13px" style="display:inline-block;vertical-align:top;margin-top:2px;">
+                Idea
+            </div>
+
+            <abbr class="space1">&#183;</abbr>
+
+            <div class="reaction-header-tab yellow-tab" title="Sad" onclick="viewReactions('sad', {{REACTION_STORY_ID}}, this);">
+                <img src="assets/imgs/reaction_sad.png" width="13px" style="display:inline-block;vertical-align:top;margin-top:2px;">
+                {{STORY_REACTION_SAD_NUM}}
+            </div>
+
+            <abbr class="space1">&#183;</abbr>
+
+            <div class="reaction-header-tab orange-tab" title="Inappropriate" onclick="viewReactions('angry', {{REACTION_STORY_ID}}, this);">
+                <img src="assets/imgs/reaction_bad.png" width="13px" style="display:inline-block;vertical-align:top;margin-top:2px;">
+                Inappropriate
+            </div>
+
+            <span class="reaction-close-btn" title="Close window" onclick="SK_closeWindow();">
+                <i class="icon-remove"></i>
+            </span>
+        </div>
+
+        <div class="reaction-content-wrapper">
+            {{LIST_LIKES}}
+        </div>
+    </div>
+</div>
+<script>
+function viewReactions(typ, storyId, elm)
+{
+    $('.reaction-header-tab').removeClass('selected-tab');
+    $(elm).addClass('selected-tab');
+
+    $('.reaction-content-wrapper').html('<div class="window-list-wrapper">@loading@</div>');
+
+    $.get(
+        SK_source(),
+
+        {
+            t: 'post',
+            a: 'view_reactions_list',
+            reaction_type: typ,
+            post_id: storyId
+        },
+
+        function(data)
+        {
+            if (data.status == 200)
+            {
+                $('.reaction-content-wrapper').html(data.html);
+            }
+        }
+    );
+}
+</script>

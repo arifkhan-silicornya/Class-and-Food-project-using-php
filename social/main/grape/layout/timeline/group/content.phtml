@@ -1,0 +1,43 @@
+<div class="timeline-header-wrapper group-header-wrapper">
+    <div class="cover-container">
+        <div class="cover-wrapper">
+            <img src="{{TIMELINE_COVER_URL}}" alt="{{TIMELINE_NAME}}">
+            <div class="cover-progress"></div>
+        </div>
+        
+        <div class="cover-resize-wrapper">
+            <img src="{{TIMELINE_ACTUAL_COVER_URL}}" alt="{{TIMELINE_NAME}}">
+
+            <div class="drag-div" align="center">
+                @reposition_drag_label@
+            </div>
+            
+            <div class="cover-progress"></div>
+        </div>
+        
+        <div class="timeline-name-wrapper">
+            <a href="{{TIMELINE_URL}}" data-href="?tab1=timeline&id={{TIMELINE_USERNAME}}">
+                {{TIMELINE_NAME}}
+            </a>
+        </div>
+    </div>
+    
+
+
+
+
+</div>
+
+{{SIDEBAR}}
+
+<div class="float-left span63" style="margin-right: 23%;">
+    <div class="timeline-370">
+        {{TAB_CONTENT}}
+    </div>
+</div>
+
+{{SIDEBAR_POSTFILTERS}}
+
+<div class="float-clear"></div>
+
+{{END}}

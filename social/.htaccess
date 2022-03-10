@@ -1,0 +1,35 @@
+RewriteEngine on
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^ajax.php$  ajax.php [NC,QSA]
+
+RewriteRule ^@([A-Za-z0-9_]+)(\/|)$  index.php?tab1=timeline&id=$1 [NC,QSA]
+RewriteRule ^@([A-Za-z0-9_]+)/([^\/]+)(\/|)$  index.php?tab1=timeline&tab2=$2&id=$1 [NC,QSA]
+RewriteRule ^@([A-Za-z0-9_]+)/([^\/]+)/([^\/]+)(\/|)$  index.php?tab1=timeline&tab2=$2&tab3=$3&id=$1 [NC,QSA]
+RewriteRule ^@([A-Za-z0-9_]+)/([^\/]+)/([^\/]+)/([^\/]+)(\/|)$  index.php?tab1=timeline&tab2=$2&tab3=$3&recipient_id=$4&id=$1 [NC,QSA]
+
+RewriteRule ^forgot-password(\/|)$  index.php?tab1=welcome&tab2=forgot_password [NC,QSA]
+RewriteRule ^password-reset/([^\/]+)(\/|)$  index.php?tab1=welcome&tab2=password_reset&id=$1 [NC,QSA]
+
+RewriteRule ^messages/([^\/]+)(\/|)$  index.php?tab1=messages&recipient_id=$1 [NC,QSA]
+RewriteRule ^story/([^\/]+)(\/|)$  index.php?tab1=story&id=$1 [NC,QSA]
+RewriteRule ^search/([^\/]+)(\/|)$  index.php?tab1=search&query=$1 [NC,QSA]
+RewriteRule ^hashtag/([^\/]+)(\/|)$  index.php?tab1=hashtag&query=$1 [NC,QSA]
+RewriteRule ^terms/([^\/]+)(\/|)$  index.php?tab1=terms&tab2=$1 [NC,QSA]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^([^\/]+)/([^\/]+)/([^\/]+)(\/|)$  index.php?tab1=$1&tab2=$2&tab3=$3 [QSA]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^([^\/]+)/([^\/]+)(\/|)$  index.php?tab1=$1&tab2=$2 [QSA]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^([^\/]+)(\/|)$  index.php?tab1=$1 [QSA]

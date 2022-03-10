@@ -1,0 +1,187 @@
+<div class="sc-lightbox-container" style="display: none;">
+    <div class="sc-lightbox-bg" onclick="close_Lightbox();"></div>
+    <div class="sc-lightbox story_{{POST_ID}}">
+        <div class="lb-container">
+            <div class="img-float">
+                <img src="{{POST_IMAGE_URL}}">
+
+            </div>
+
+            <div class="comment-flow">
+                <div class="lb-story-meta">
+                    <div class="lb-story-pubwrap">
+                        <table border="0" width="100%">
+                            <tr>
+                                <td valign="top" align="left" width="55px">
+                                    <img class="lb-story-pubavatar" src="{{POST_USER_THUMBNAIL_URL}}" width="50px" alt="Avatar">
+                                </td>
+
+                                <td valign="top" align="left">
+                                    <a class="lb-story-pubname" href="{{POST_USER_URL}}">
+                                        {{POST_USER_NAME}}
+                                    </a>
+
+                                    <br>
+
+                                    <span class="lb-story-time ajax-time" title="{{POST_TIME}}">
+                                        {{POST_TIME}}
+                                    </span>
+
+                                     &#183; 
+
+                                    <span class="privacy-wrapper" title="{{STORY_PRIVACY_TITLE}}">
+                                        {{STORY_PRIVACY_ICON}}
+                                    </span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="lb-story-options">
+                        <div class="story-react-container">
+                            {{POST_LIKE_BUTTON}}
+
+                            {{STORY_REACTIONS}}
+                        </div>
+                        
+                        <abbr class="space6">
+                            &#183;
+                        </abbr>
+                        
+                        {{POST_SHARE_BUTTON}}
+                        
+                        <abbr class="space6">
+                            &#183;
+                        </abbr>
+                        
+                        {{POST_FOLLOW_BUTTON}}
+                    </div>
+
+                    <div class="lb-story-text">
+                        {{POST_TEXT}}
+                    </div>
+                </div>
+
+                {{POST_VIEW_ALL_COMMENTS_HTML}}
+
+                <div class="comments-wrapper">
+                    {{POST_COMMENTS}}
+                </div>
+
+                <div class="lb-comment-meta lb-new-comment-meta">
+                    <table border="0" width="100%">
+                        <tr>
+                            <td valign="top" align="left" width="36px">
+                                <img class="lb-comment-pubavatar" src="{{USER_THUMBNAIL_URL}}" width="32px" alt="Avatar">
+                            </td>
+
+                            <td class="lb-comment-textarea-wrapper" valign="top" align="left">
+                                <textarea class="lb-new-comment-textarea auto-grow-input" placeholder="@comment_textarea_label@" onkeyup="SK_registerCommentviaLB(this.value,{{POST_ID}},{{USER_ID}},event);"></textarea>
+                                <i class="icon-lightbulb progress-icon hide"></i>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="lb-close-btn icon-remove" onclick="close_Lightbox();" title="Close"></div>
+            </div>
+
+            <div class="float-clear"></div>
+        </div>
+    </div>
+    <script>
+    $(".lb-container").find(".img-float").find("img")
+        .load(function() {
+            $('.pre_load_wrap').remove();
+            Adjust_Lightbox();
+        });
+
+    $(window).resize(function () {
+        Adjust_Lightbox();
+    });
+
+    function Adjust_Lightbox() {
+        $(".sc-lightbox-container").show();
+        var sW = $(window).width();
+        var sW_p80 = sW * 0.8;
+        var sH = $(window).height();
+        var SH_p10 = sH * 0.1;
+        var Wi = {{POST_IMAGE_WIDTH}};
+        var Hei = {{POST_IMAGE_HEIGHT}};
+        var LB_container = $(".sc-lightbox");
+        var LB = $(".lb-container");
+        var LB_imgwrap = LB.find(".img-float");
+        var LB_img = LB_imgwrap.find("img");
+        var LB_commentFlow = LB.find(".comment-flow");
+
+        if (Wi > Hei) {
+            var Hei_by_Wi = Hei / Wi;
+            var maxWi = sW_p80;
+
+            if (maxWi > 1400)
+            {
+                maxWi = 1400;
+            }
+
+            var LB_Hei = (maxWi - 350) * Hei_by_Wi;
+            LB_containerMargin = ((sW - LB_Hei) / 2) - 4;
+
+            LB.css("max-width", maxWi + 'px'); 
+            LB_imgwrap.css("width", (maxWi - 350) + 'px');
+            LB_img.css("width", "100%");
+            LB_commentFlow.css("height", LB_Hei + 'px');
+
+            var LBmargin = (sH - LB_imgwrap.find("img").height()) / 2;
+
+            LB.css({
+                "margin-top": LBmargin + 'px',
+            });
+        } else {
+            var Wi_by_Hei = Wi / Hei;
+            var SH_p80 = sH * 0.8;
+            var maxWi = (SH_p80 * Wi_by_Hei) + 351;
+            LB_containerMargin = ((sW - maxWi) / 2) - 4;
+
+            LB.css("max-width", maxWi + 'px');
+            LB_img.css("height", SH_p80 + 'px');
+            LB_commentFlow.css("height", SH_p80 + 'px');
+
+            var LBmargin = (sH - LB_imgwrap.find("img").height()) / 2;
+
+            LB.css({
+                "margin-top": LBmargin + 'px',
+            });
+
+            LB_container.css({
+                left: LB_containerMargin + 'px',
+                right: LB_containerMargin + 'px'
+            });
+        }
+    }
+
+    function close_Lightbox() {
+        $(".sc-lightbox-container").remove();
+    }
+
+    function SK_registerCommentviaLB(text, post_id, timeline_id, event) {
+        if (event.keyCode == 13 && event.shiftKey == 0) {
+            main_wrapper = $('.story_' + post_id);
+            comment_textarea = main_wrapper.find('.lb-comment-textarea-wrapper');
+            textarea_wrapper = comment_textarea.find('textarea');
+            textarea_wrapper.val('');
+            
+            SK_progressIconLoader(comment_textarea);
+            
+            $.post(SK_source() + '?t=post&a=comment&lb=1&post_id=' + post_id, {text: text, timeline_id: timeline_id}, function (data) {
+                
+                if (data.status == 200) {
+                    main_wrapper.find('.comments-wrapper').append(data.html);
+                    main_wrapper.find('.story-comment-activity').html(data.activity_html);
+                }
+                
+                SK_progressIconLoader(comment_textarea);
+            });
+        }
+    }
+    </script>
+</div>

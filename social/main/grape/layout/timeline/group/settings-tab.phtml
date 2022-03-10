@@ -1,0 +1,144 @@
+<form class="update-group-settings-form" method="post">
+<div class="form-container">
+    <div class="form-header">
+        @group_settings_label@
+    </div>
+
+    <div class="form-input-wrapper">
+        <label class="float-left span20" style="float: left;">
+            @username_label@:
+        </label>
+
+        <div class="input float-left span65">
+            <input type="text" name="username" value="{{TIMELINE_USERNAME}}" autocomplete="off" onkeyup="SK_checkUsername(this.value,{{TIMELINE_ID}},'.check-username-result',true);">
+            <div class="check-username-result ajax-result"></div>
+        </div>
+
+        <div class="float-clear"></div>
+    </div>
+
+    <div class="form-input-wrapper">
+        <label class="float-left span20" style="float: left;">
+            @group_name_label@:
+        </label>
+
+        <div class="input float-left span65">
+            <input type="text" name="name" value="{{TIMELINE_NAME}}">
+        </div>
+
+        <div class="float-clear"></div>
+    </div>
+
+    <div class="form-input-wrapper">
+        <label class="float-left span20" style="float: left;">
+            @about_label@:
+        </label>
+
+        <div class="input float-left span65">
+            <textarea class="auto-grow-input" valign="top" name="about">{{TIMELINE_ABOUT}}</textarea>
+        </div>
+
+        <div class="float-clear"></div>
+    </div>
+
+    <div class="form-input-wrapper">
+        <label class="float-left span20" style="float: left;">
+            @privacy_label@:
+        </label>
+
+        <div class="input float-left span65">
+            <div style="margin-top: 5px;">
+                <input valign="top" type="radio" name="group_privacy" value="open"{{GROUP_PRIVACY_OPEN_CHECKED_ATTR}}>
+                <i class="icon-globe" style="margin-right: 3px;"></i> @open_group@
+                <br>
+                <small>
+                    @open_group_description@.
+                </small>
+            </div>
+            
+            <div style="margin-top: 15px;">
+                <input valign="top" type="radio" name="group_privacy" value="closed"{{GROUP_PRIVACY_CLOSED_CHECKED_ATTR}}>
+                <i class="icon-lock" style="margin-right: 3px;"></i> @closed_group@
+                <br>
+                <small>
+                    @closed_group_description@.
+                </small>
+            </div>
+            
+            <div style="margin-top: 15px;">
+                <input valign="top" type="radio" name="group_privacy" value="secret"{{GROUP_PRIVACY_SECRET_CHECKED_ATTR}}>
+                <i class="icon-shield" style="margin-right: 3px;"></i> @secret_group@
+                <br>
+                <small>
+                    @secret_group_description@.
+                </small>
+            </div>
+        </div>
+
+        <div class="float-clear"></div>
+    </div>
+
+    <div class="form-input-wrapper">
+        <label class="float-left span20" style="float: left;width: 28%;">
+            @group_add_privacy_label@:
+        </label>
+
+        <div class="input float-left span65">
+            <select name="add_privacy">
+                <option value="members"{{ADD_PRIVACY_MEMBERS_ATTR}}>
+                    @group_members_label@
+                </option>
+
+                <option value="admins"{{ADD_PRIVACY_ADMINS_ATTR}}>
+                    @group_admins_label@
+                </option>
+            </select>
+        </div>
+
+        <div class="float-clear"></div>
+    </div>
+
+    <div class="form-input-wrapper">
+        <label class="float-left span20" style="float: left;width: 28%;">
+            @group_timeline_post_privacy_label@:
+        </label>
+
+        <div class="input float-left span65">
+            <select name="timeline_post_privacy">
+                <option value="members"{{POST_PRIVACY_MEMBERS_ATTR}}>
+                    @group_members_label@
+                </option>
+
+                <option value="admins"{{POST_PRIVACY_ADMINS_ATTR}}>
+                    @group_admins_label@
+                </option>
+            </select>
+        </div>
+
+        <div class="float-clear"></div>
+    </div>
+    
+    <div class="form-input-wrapper">
+        <button class="active">
+            @save_changes_button@
+        </button>
+    </div>
+</div>
+<input name="timeline_id" value="{{TIMELINE_ID}}" type="hidden">
+</form>
+<script>
+$('form.update-group-settings-form').ajaxForm({
+    url: SK_source() + '?t=group&a=update_settings',
+    
+    beforeSend: function() {
+        $('form.update-group-settings-form').find('input[type="submit"]')
+        .val('Saving...');
+    },
+    success: function(responseText) {
+        
+        if (responseText.status == 200) {
+            window.location = responseText.url;
+        }
+    }
+});
+</script>

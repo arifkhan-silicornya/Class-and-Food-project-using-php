@@ -1,0 +1,21 @@
+<div class="window-container">
+    <div class="window-background" onclick="SK_closeWindow();"></div>
+    <div class="window-wrapper">
+        <div class="window-header-wrapper">
+            <i class="icon-minus-sign"></i> 
+            Delete album?
+            <span class="window-close-btn" title="Close window" onclick="SK_closeWindow();">
+                <i class="icon-remove"></i>
+            </span>
+        </div>
+        <div class="button-content-wrapper">
+            <button onclick="SK_closeWindow();">
+                @cancel@
+            </button> 
+
+            <button class="active" onclick="SK_deleteAlbum({{ALBUM_ID}});">
+                @delete_button@
+            </button>
+        </div>
+    </div>
+</div>

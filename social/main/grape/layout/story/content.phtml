@@ -1,0 +1,77 @@
+<div id="story_{{STORY_ID}}" class="story-wrapper story_{{STORY_ID}}" data-story-id="{{STORY_ID}}">
+    <div class="publisher-wrapper">
+        <table border="0" width="100%" cellspacing="0" cellpadding="0">
+        <tr>
+            <td width="48px" align="left" valign="top">
+                <a href="{{STORY_TIMELINE_URL}}" data-href="?tab1=timeline&id={{STORY_TIMELINE_USERNAME}}">
+                    <img class="avatar" src="{{STORY_TIMELINE_THUMBNAIL_URL}}" width="40px" height="40px" alt="{{STORY_TIMELINE_NAME}}">
+                </a>
+            </td>
+            <td align="left" valign="top">
+                {{STORY_TIMELINE_LINK}}
+                
+                {{STORY_RECIPIENT_HTML}}
+
+                {{STORY_ACTIVITY_TEXT}}
+
+                <div class="other-data">
+                    <span class="time-wrapper ajax-time" title="{{STORY_TIME}}">
+                        {{STORY_TIME}}
+                    </span>
+
+                     &#183; 
+
+                    <span class="privacy-wrapper" title="{{STORY_PRIVACY_TITLE}}">
+                        {{STORY_PRIVACY_ICON}}
+                    </span>
+                    
+                    {{STORY_LOCATION_HTML}}
+                </div>
+            </td>
+        </tr>
+        </table>
+    </div>
+    
+    {{STORY_CONTROL_BUTTONS}}
+
+    {{STORY_TEXT_HTML}}
+    
+    {{MEDIA_HTML}}
+    
+    <div class="activity-wrapper">
+
+        <div class="vdfbvb">
+    <div class="story-react-container">
+        {{STORY_LIKE_BUTTON}}
+
+        {{STORY_REACTIONS}}
+    </div>&nbsp;&nbsp;
+
+
+     <span class="story-comment-activity">
+                        {{STORY_COMMENT_ACTIVITY}}
+    </span>&nbsp;&nbsp;
+
+    
+    
+    
+    
+    <span>{{STORY_SHARE_BUTTON}}</span>
+    
+    <span style="float: right;">{{VIA}}</span>  
+   
+</div>
+        
+   
+    </div>
+    
+    <div class="comments-container hidden">
+        {{VIEW_ALL_COMMENTS_HTML}}
+        
+        <div class="comments-wrapper">
+            {{COMMENTS}}
+        </div>
+        
+        {{COMMENT_PUBLISHER_BOX}}
+    </div>
+</div>

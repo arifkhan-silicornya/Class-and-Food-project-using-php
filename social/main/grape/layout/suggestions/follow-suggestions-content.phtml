@@ -1,0 +1,31 @@
+<div class="list-wrapper suggestions-wrapper {{LIST_SUGGESTIONS_TYPE}}-suggestions-wrapper">
+    <div class="list-header">
+        <div class="float-left" style="float: left;">
+            {{LIST_SUGGESTIONS_HEADER_TITLE}}
+        </div>
+
+
+
+        <div class="float-clear"></div>
+    </div>
+
+    <div class="suggestions-content">
+        {{LIST_SUGGESTIONS}}
+    </div>
+</div>
+
+<script>
+function refresh{{LIST_SUGGESTIONS_TYPE}}FollowSuggestions() {
+    
+    SK_progressIconLoader($('.{{LIST_SUGGESTIONS_TYPE}}-suggestions-wrapper').find('.list-header'));
+    
+    $.get(SK_source(), {t: 'search', a: 'suggestions', type: '{{LIST_SUGGESTIONS_TYPE}}'}, function (data) {
+        
+        if (data.status == 200) {
+            $('.{{LIST_SUGGESTIONS_TYPE}}-suggestions-wrapper').find('.suggestions-content').html(data.html);
+        }
+        
+        SK_progressIconLoader($('.{{LIST_SUGGESTIONS_TYPE}}-suggestions-wrapper'));
+    });
+}
+</script>

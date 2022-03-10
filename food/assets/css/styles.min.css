@@ -1,0 +1,85 @@
+header{margin:40px 0 20px;text-align:center;padding:0 10px}
+header h1{font-weight:700;margin-bottom:12px;font-size:28px;margin-top:30px}
+.content{max-width:600px;margin:0 auto}
+.content h2{font-size:18px;font-weight:700;margin:40px 0 30px}
+.content figure{display:block;text-align:center;margin:20px 0}
+.content figcaption{font-size:12px;padding-top:10px}
+.content div.dropdown{margin:20px auto;width:130px}
+.content blockquote p{font-size:14px;padding:15px 20px;border-left:3px solid #edecf2;background-color:#f9f9fb}
+.dh-header-non-rectangular{position:relative;height:250px!important;overflow:hidden}
+.header__bg{position:absolute;top:0;bottom:0;right:0;left:0;width:100%;height:100%;background-image:linear-gradient(#2306d3,#26cbff);transform:skewY(-6deg);transform-origin:top left}
+.dh-header-non-rectangular-container{text-align:center;padding-top:70px;padding-bottom:30px}
+.dh-header-non-rectangular-container h1,p{color:#fff;font-weight:700}
+.navbar-toggle{z-index:3}
+.navbar-default{background-color:#fff;background-image:none}
+.navigation-clean{background:#fff;padding-top:10px;padding-bottom:10px;color:#333;border-radius:0;box-shadow:none;border:none;margin-bottom:0}
+@media (max-width:767px){.navigation-clean{padding-top:0;padding-bottom:0}
+.navigation-clean .navbar-header{padding-top:10px;padding-bottom:10px}
+}
+.navigation-clean .navbar-brand{font-weight:700;color:inherit}
+.navigation-clean .navbar-brand:hover{color:#222}
+.navigation-clean.navbar-inverse .navbar-brand:hover{color:#f0f0f0}
+.navigation-clean .navbar-toggle{border-color:#ddd}
+.navigation-clean .navbar-toggle:focus,.navigation-clean .navbar-toggle:hover{background:0 0}
+.navigation-clean.navbar-inverse .navbar-toggle{border-color:#555}
+.navigation-clean .navbar-toggle .icon-bar{background-color:#888}
+.navigation-clean.navbar-inverse .navbar-toggle .icon-bar{background-color:#eee}
+.navigation-clean .navbar-collapse,.navigation-clean .navbar-form{border-top-color:#ddd}
+.navigation-clean.navbar-inverse .navbar-collapse,.navigation-clean.navbar-inverse .navbar-form{border-top-color:#333}
+.navigation-clean.navbar .navbar-nav>li>a{padding-left:18px;padding-right:18px}
+.navigation-clean.navbar-default .navbar-nav>li>a{color:#465765}
+.navigation-clean.navbar-default .navbar-nav>li>a:focus,.navigation-clean.navbar-default .navbar-nav>li>a:hover{color:#37434d!important;background-color:transparent}
+.navigation-clean.navbar-inverse{background-color:initial;color:#fff}
+.navigation-clean.navbar-inverse .navbar-nav>li>a{color:#dfe8ee;font-weight:700}
+.navigation-clean.navbar-inverse .navbar-nav>li>a:focus,.navigation-clean.navbar-inverse .navbar-nav>li>a:hover{color:#0e01a4!important;background-color:transparent}
+.navbar-inverse .navbar-brand,.navbar-inverse .navbar-nav>li>a{font-weight:700;text-transform:uppercase}
+a:focus,a:hover{text-decoration:none}
+a,a:focus,a:hover{outline:0}
+.login-cont{padding:7px 7px 7px;text-align:center}
+.form-control.input-lg.lg-frc{border-radius:0;background-color:transparent;border-top:none;border-left:none;border-right:none;font-size:14px;padding:5px 8px;color:#fff}
+.form-control.input-lg.lg-frc:focus{border-color:#565656;outline:0;-webkit-box-shadow:none;box-shadow:none}
+.login-col{padding:15px 30px 30px;z-index:10000!important; background-color:rgba(18, 127, 216, 0.2);border:1px solid rgba(12, 15, 197, 0.788)}
+.login-btn{border-radius:0;background-color:transparent;background-image:none;text-shadow:none;color:#fff;padding:10px 40px;margin-top:25px;font-size:14px}
+@media (max-width:768px){.login-cont{margin-top:10px;padding:20px}
+}
+.form-control:focus{border-color:#25476a;outline:0;-webkit-box-shadow:none;box-shadow:none}
+.lgp-hd{color:#fff;text-align:center;text-transform:uppercase;margin-top:-130px!important;}
+.login-form{border:1px solid rgba(204,204,204,.36);padding:20px;background-color:rgba(0,0,0,.32)}
+.icon.ion-lock-combination{color:#fff;font-size:70px;margin-bottom:10px}
+
+
+.login-col{z-index:10000!important;}
+        @media screen and (max-width: 991px) {
+            .dh-header-non-rectangular{
+                width: 100%!important;
+                margin-left: 0!important;
+                margin-right: 0!important;
+            }
+            .header__bg{
+                width: 100%!important;
+                margin-left: 0!important;
+                margin-right: 0!important;
+            }
+            .lgp-hd{
+                margin-top:-160px!important;
+            }
+            .login-cont{
+                padding: 6px 7px 7px;
+                width: 100%;
+                margin-left:0!important;
+                margin-right:0!important;
+            }
+            .login-col{
+                width: 100%!important;
+            }
+        }
+        @media screen and (max-width: 768px) {
+            .login-col{
+                width: 100%!important;
+            }
+        }
+        @media screen and (max-width: 575.98px) {
+            .login-col{
+                padding : 0!important;
+            }
+        }

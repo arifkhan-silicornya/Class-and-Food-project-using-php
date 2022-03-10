@@ -1,0 +1,36 @@
+<div class="input-wrapper">
+    <select class="birth-date-select" name="birthday[0]" style="width: 48px;">
+        {{LIST_BIRTH_DATES}}
+    </select>
+
+    <select class="birth-month-select" name="birthday[1]" style="width: 98px;" onchange="SK_getMonthDays(this.value);">
+        {{LIST_BIRTH_MONTHS}}
+    </select>
+
+    <select class="birth-year-select" name="birthday[2]" style="width: 65px;">
+        {{LIST_BIRTH_YEARS}}
+    </select>
+</div>
+
+<script>
+function SK_getMonthDays(month_number) {
+    var month = new Array();
+    month[1] = 31;
+    month[2] = 28;
+    month[3] = 31;
+    month[4] = 30;
+    month[5] = 31;
+    month[6] = 30;
+    month[7] = 31;
+    month[8] = 31;
+    month[9] = 30;
+    month[10] = 31;
+    month[11] = 30;
+    month[12] = 31;
+    $('.birth-date-select').html('');
+    
+    for (i=1; i<=month[month_number]; i++) {
+        $('.birth-date-select').append('<option value="'+ i +'">'+ i +'</option>');
+    }
+}
+</script>

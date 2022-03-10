@@ -1,0 +1,22 @@
+<div class="list-wrapper">
+    <div class="list-header">
+        @group_add_members_label@
+    </div>
+    
+    {{ADD_MEMBER_USERLISTS}}
+</div>
+
+<script>
+function SK_addGroupMember(group_id, member_id) {
+    $('.follower-id-' + member_id).find('.add-member-btn').val('Adding..');
+    
+    $.post(SK_source() + '?t=group&a=add_member', {group_id: group_id, member_id: member_id}, function (data) {
+        
+        if (data.status == 200) {
+            $('.follower-id-' + member_id).slideUp(function() {
+                $(this).remove();
+            });
+        }
+    });
+}
+</script>

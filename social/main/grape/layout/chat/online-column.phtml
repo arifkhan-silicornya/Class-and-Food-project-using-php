@@ -1,0 +1,19 @@
+<div id="online_{{LIST_ONLINE_ID}}" class="column cursor-hand" onclick="SK_getChat({{LIST_ONLINE_ID}},'{{LIST_ONLINE_NAME}}');">
+    <table border="0" width="100%" cellspacing="0" cellpadding="0">
+    <tr>
+        <td width="32px" align="left" valign="middle">
+            <img width="32px" height="32px" class="user-avatar" src="{{LIST_ONLINE_THUMBNAIL_URL}}" alt="{{LIST_ONLINE_NAME}}">
+        </td>
+        
+        <td align="left" valign="middle">
+            <span class="bold-500">
+                {{LIST_ONLINE_NAME_SHORT}}
+            </span>
+            
+            <i class="icon-circle online-icon {{LIST_ONLINE_CLASS}}"></i>
+
+            {{LIST_ONLINE_NUM_MESSAGES_HTML}}
+        </td>
+    </tr>
+    </table>
+</div>

@@ -1,0 +1,23 @@
+<a class="notification-list {{NOTIF_UNREAD_CLASS}}" href="{{NOTIF_URL}}" data-href="{{NOTIF_URL_RAW}}">
+    <table border="0" width="100%" cellspacing="0" cellpadding="0">
+        <tr>
+            <td width="38px" valign="top" align="left">
+                <img class="avatar" src="{{NOTIFIER_AVATAR_URL}}" width="32px" height="auto" alt="{{NOTIFIER_NAME}}">
+            </td>
+            
+            <td valign="top" align="left">
+                <span class="bold-500">
+                    {{NOTIFIER_NAME}}
+                </span> 
+
+                {{NOTIF_TEXT}}
+
+                <br>
+                
+                <span class="time ajax-time" title="{{NOTIF_TIME}}">
+                    {{NOTIF_TIME}}
+                </span>
+            </td>
+        </tr>
+    </table>
+</a>

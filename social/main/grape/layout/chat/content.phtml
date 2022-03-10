@@ -1,0 +1,21 @@
+<div id="chat_{{CHAT_RECIPIENT_ID}}" class="chat-wrapper {{CHAT_RECIPIENT_CLASS}}">
+    <div class="chat-header" onclick="javascript:$('.chat-content-toggler').toggle();">
+        <div class="float-left">
+            <i class="icon-circle online-icon {{CHAT_RECIPIENT_ONLINE_CLASS}}"></i> 
+            <span class="chat-recipient-name">
+                {{CHAT_RECIPIENT_NAME_SHORT}}
+            </span>
+        </div>
+        <div class="float-right">
+            <i class="icon-remove close-icon" onclick="SK_closeChat();" title="@close_chat@"></i>
+        </div>
+        <div class="float-clear"></div>
+    </div>
+    <div class="chat-content-toggler">
+        <div class="chat-messages">
+            {{MESSAGES_HTML}}
+        </div>
+
+        {{CHAT_TEXTAREA}}
+    </div>
+</div>

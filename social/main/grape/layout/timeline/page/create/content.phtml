@@ -1,0 +1,103 @@
+<div class="page-margin"></div>
+<div class="float-right span59" style="margin-left: 20%;">
+    <form class="create-page-form" method="post">
+        <div class="form-container">
+            <div class="form-header" style="margin-bottom: 2px;">
+                @page_create_label@
+            </div>
+            
+            <div class="form-input-wrapper" style="visibility: hidden;height: 1px;">
+                <label class="float-left span25" style="float: left;height: 1px;">
+                    @page_category_label@:
+                </label>
+
+                <div class="input float-left span65" style="height: 1px;">
+                    <select name="page_category_id">
+                        {{LIST_CATEGORIES}}
+                    </select>
+                </div>
+                
+                <div class="float-clear"></div>
+            </div>
+            
+            <div class="form-input-wrapper">
+                <label class="float-left span25" style="float: left;">
+                    @page_name_label@:
+                </label>
+
+                <div class="input float-left span65">
+                    <input type="text" value="name of your page" placeholder="name of your page" data-placeholder="name of your page" onkeyup="SK_generateUsername(this.value);" data-copy-to=".page-name-input">
+                    
+                    <input class="page-name-input" type="hidden" name="page_name">
+                </div>
+                <div class="float-clear"></div>
+            </div>
+            
+            <div class="form-input-wrapper">
+                <label class="float-left span25" style="float: left;">
+                    @username_label@:
+                </label>
+                
+                <div class="input float-left span65">
+                    <input class="username-textinput" type="text" value="username of your page" placeholder="username of your page" data-placeholder="username of your page" autocomplete="off" data-copy-to=".page-username-input" onkeyup="SK_checkUsername(this.value,0,'.check-username-result',true);">
+                    
+                    <input class="page-username-input" type="hidden" name="page_username">
+                    
+                    <div class="check-username-result"></div>
+                </div>
+                
+                <div class="float-clear"></div>
+            </div>
+            
+            <div class="form-input-wrapper">
+                <label class="float-left span25" style="float: left;">
+                    @description_label@:
+                </label>
+                
+                <div class="input float-left span65">
+                    <textarea class="auto-grow-input" valign="top" name="page_about" placeholder="write about your page" data-placeholder="write about your page">write about your page</textarea>
+                </div>
+                
+                <div class="float-clear"></div>
+            </div>
+            
+            <div class="form-input-wrapper">
+                <button class="active">
+                    @page_create_label@
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+<div class="float-clear"></div>
+
+<script>
+$(function(){
+    $('form.create-page-form').ajaxForm({
+        url: SK_source() + '?t=page&a=create',
+        
+        beforeSend: function() {
+            $('form.create-page-form')
+                .find('button')
+                    .removeClass()
+                    .text('@creating@...');
+        },
+        
+        success: function(responseText) {
+            
+            if (responseText.status == 200) {
+                window.location = responseText.url;
+            }
+            else {
+                $('form.create-page-form')
+                .find('button')
+                    .addClass('active')
+                    .text('@page_create_label@');
+            }
+        }
+    });
+});
+</script>

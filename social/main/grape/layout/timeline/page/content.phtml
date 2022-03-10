@@ -1,0 +1,59 @@
+<div class="timeline-header-wrapper">
+    <div class="cover-container">
+        <div class="cover-wrapper">
+            <img src="{{TIMELINE_COVER_URL}}" alt="@">
+            <div class="cover-progress"></div>
+        </div>
+        
+        <div class="cover-resize-wrapper">
+            <img src="{{TIMELINE_ACTUAL_COVER_URL}}" alt="{{TIMELINE_NAME}}">
+            <div class="drag-div" align="center">
+                @reposition_drag_label@
+            </div>
+            <div class="cover-progress"></div>
+        </div>
+        
+        <div class="avatar-wrapper">
+            <img class="avatar" src="{{TIMELINE_AVATAR_URL}}" alt="{{TIMELINE_NAME}}">
+            
+            {{CHANGE_AVATAR_HTML}}
+        </div>
+        
+        <div class="timeline-name-wrapper">
+            <a href="{{TIMELINE_URL}}" data-href="?tab1=timeline&id={{TIMELINE_USERNAME}}">
+                {{TIMELINE_NAME}}
+            </a>
+            
+            {{VERIFIED_BADGE}}
+        </div>
+    </div>
+    
+    <div class="timeline-statistics-wrapper">
+        <div class="float-left statistic" align="center">
+            {{LIKES_NUM}} @people_likes_this_label@
+        </div>
+
+        <div class="float-left statistic">
+            <a href="{{POSTS_TAB_URL}}" data-href="?tab1=timeline&tab2=stories&id={{TIMELINE_USERNAME}}">
+                {{POSTS_NUM}} @posts_label@
+            </a>
+        </div>
+
+        <div class="float-clear"></div>
+    </div>
+</div>
+
+{{SIDEBAR}}
+
+<div class="float-right span63" style="margin-left: 3%;">
+    <div class="timeline-370">
+        {{STORY_POSTBOX}}
+
+        {{STORIES}}
+    </div>
+</div>
+
+{{SIDEBAR_POSTFILTERS}}
+
+<div class="float-clear"></div>
+{{END}}

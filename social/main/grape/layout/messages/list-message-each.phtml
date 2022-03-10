@@ -1,0 +1,35 @@
+<div id="message_{{LIST_MESSAGE_ID}}" class="text-message-wrapper" data-message-id="{{LIST_MESSAGE_ID}}">
+    <table border="0" width="100%">
+    <tr>
+        <td width="32px" align="left" valign="top">
+            <a href="{{LIST_MESSAGE_TIMELINE_URL}}" data-href="?tab1=timeline&id={{LIST_MESSAGE_TIMELINE_USERNAME}}">
+                <img class="avatar" width="32px" height="32px" src="{{LIST_MESSAGE_TIMELINE_THUMBNAIL_URL}}" alt="{{LIST_MESSAGE_TIMELINE_NAME}}">
+            </a>
+        </td>
+
+        <td width="2px"></td>
+
+        <td align="left" valign="top">
+            <div>
+                <a class="publisher-name" href="{{LIST_MESSAGE_TIMELINE_URL}}" data-href="?tab1=timeline&id={{LIST_MESSAGE_TIMELINE_USERNAME}}">
+                    {{LIST_MESSAGE_TIMELINE_NAME}}
+                </a> 
+
+                <span class="message-text">
+                    {{LIST_MESSAGE_TEXT}}
+                </span>
+            </div>
+
+            {{LIST_MESSAGE_MEDIA_HTML}}
+            
+            <div class="time">
+                <span class="ajax-time" title="{{LIST_MESSAGE_TIME}}">
+                    {{LIST_MESSAGE_TIME}}
+                </span>
+            </div>
+        </td>
+    </tr>
+    </table>
+    
+    {{LIST_MESSAGE_BUTTONS}}
+</div>

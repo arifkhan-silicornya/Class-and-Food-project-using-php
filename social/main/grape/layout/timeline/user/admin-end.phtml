@@ -1,0 +1,180 @@
+<script>
+$(function(){
+    $('.timeline-370').css('min-height', ($('.timeline-sidebar').height() + 150) + 'px');
+    $('.cover-resize-wrapper').height($('.cover-resize-wrapper').width()*0.3);
+    
+    $('form.change-avatar-form').ajaxForm({
+        url: SK_source() + '?t=avatar&a=new',
+        
+        beforeSend: function() {
+            $('.avatar-progress-wrapper').html('0%<br>@uploaded@').fadeIn('fast').removeClass('hidden');
+            $('.avatar-change-wrapper').addClass('hidden');
+        },
+        
+        uploadProgress: function(event, position, total, percentComplete) {
+            var percentVal = percentComplete+'%';
+            $('.avatar-progress-wrapper').html(percentVal+'<br>@uploaded@');
+            
+            if (percentComplete == 100) {
+                
+                setTimeout(function () {
+                    $('.avatar-progress-wrapper').html('@processing@');
+                    
+                    setTimeout(function () {
+                        $('.avatar-progress-wrapper').html('@please_wait@');
+                    }, 2000);
+                }, 500);
+            }
+        },
+        success: function(responseText) {
+            
+            if (responseText.status == 200) {
+                $('.avatar-wrapper').find('img.avatar')
+                    .attr('src', responseText.avatar_url)
+                    .load(function() {
+                        $('.avatar-progress-wrapper').fadeOut('fast').addClass('hidden').html('');
+                        $('.avatar-change-wrapper').removeClass('hidden');
+                    });
+            }
+            else {
+                $('.avatar-progress-wrapper').fadeOut('fast').addClass('hidden').html('');
+                $('.avatar-change-wrapper').removeClass('hidden');
+            }
+        }
+    });
+    
+    $('form.cover-form').ajaxForm({
+        url: SK_source() + '?t=cover&a=new',
+        
+        beforeSend: function() {
+            $('.cover-progress')
+                .html('0% @uploaded@')
+                .css('line-height', $('.cover-resize-wrapper').height() + 'px')
+                .fadeIn('fast')
+                .removeClass('hidden');
+        },
+        
+        uploadProgress: function(event, position, total, percentComplete) {
+            var percentVal = percentComplete+'%';
+            $('.cover-progress').html(percentVal+' @uploaded@');
+            
+            if (percentComplete == 100) {
+                
+                setTimeout(function () {
+                    $('.cover-progress').html('@processing@');
+                    
+                    setTimeout(function () {
+                        $('.cover-progress').html('@please_wait@');
+                    }, 2000);
+                }, 500);
+            }
+        },
+        
+        success: function(responseText) {
+            
+            if (responseText.status == 200) {
+                $('.cover-wrapper img')
+                    .attr('src', responseText.cover_url + '?' + new Date().getTime())
+                    .load(function() {
+                        $('.cover-progress').fadeOut('fast', function(){
+                            $(this).addClass('hidden').html('');
+                        });
+                        $('.cover-resize-wrapper img').attr('src', responseText.actual_cover_url + '?' + new Date().getTime()).css('top', 0);
+                    });
+            }
+            else {
+                $('.cover-progress').fadeOut('fast', function(){
+                    $(this).addClass('hidden').html('');
+                });
+                $('.cover-resize-wrapper img').css('top', 0);
+            }
+        }
+    });
+    
+    $('form.cover-position-form').ajaxForm({
+        url: SK_source() + '?t=cover&a=reposition',
+        
+        beforeSend: function() {
+            $('.cover-progress').html('@repositioning@').fadeIn('fast').removeClass('hidden');
+        },
+        
+        success: function(responseText) {
+            
+            if (responseText.status == 200) {
+                $('.cover-wrapper img')
+                    .attr('src', responseText.url + '?' + new Date().getTime())
+                    .load(function () {
+                        $('.cover-progress').fadeOut('fast').addClass('hidden').html('');
+                        $('.cover-wrapper').show();
+                        $('.cover-resize-wrapper')
+                            .hide()
+                            .find('img').css('top', 0);
+                        $('.cover-resize-buttons').hide();
+                        $('.default-buttons').show();
+                        $('input.cover-position').val(0);
+                        $('.cover-resize-wrapper img').draggable('destroy').css('cursor','default');
+                    });
+            }
+        }
+    });
+    
+    $(window).resize(function () {
+        cover_width = $('.cover-resize-wrapper').width();
+        $('.cover-resize-wrapper').height(cover_width * 0.3);
+        $('.cover-resize-wrapper img').css('top', 0);
+        $('.cover-progress').css('line-height', $('.cover-resize-wrapper').height() + 'px');
+        $('.screen-width').val(cover_width);
+    });
+});
+
+function SK_repositionCover() {
+    $('.cover-wrapper').hide();
+    $('.cover-resize-wrapper').show();
+    $('.cover-resize-buttons').show();
+    $('.default-buttons').hide();
+    $('.screen-width').val($('.cover-resize-wrapper').width());
+    $('.cover-resize-wrapper img')
+    .css('cursor', 's-resize')
+    .draggable({
+        scroll: false,
+        
+        axis: "y",
+        
+        cursor: "s-resize",
+        
+        drag: function (event, ui) {
+            y1 = $('.timeline-header-wrapper').height();
+            y2 = $('.cover-resize-wrapper').find('img').height();
+            
+            if (ui.position.top >= 0) {
+                ui.position.top = 0;
+            }
+            else
+            if (ui.position.top <= (y1-y2)) {
+                ui.position.top = y1-y2;
+            }
+        },
+        
+        stop: function(event, ui) {
+            $('input.cover-position').val(ui.position.top);
+        }
+    });
+}
+
+function SK_saveReposition() {
+    
+    if ($('input.cover-position').length == 1) {
+        posY = $('input.cover-position').val();
+        $('form.cover-position-form').submit();
+    }
+}
+
+function SK_cancelReposition() {
+    $('.cover-wrapper').show();
+    $('.cover-resize-wrapper').hide();
+    $('.cover-resize-buttons').hide();
+    $('.default-buttons').show();
+    $('input.cover-position').val(0);
+    $('.cover-resize-wrapper img').draggable('destroy').css('cursor','default');
+}
+</script>

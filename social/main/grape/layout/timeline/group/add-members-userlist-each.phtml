@@ -1,0 +1,19 @@
+<div class="list-column follower-id-{{ADD_MEMBER_USER_ID}}">
+    <table border="0" width="100%" cellspacing="0" cellpadding="0">
+    <tr>
+        <td width="42px" align="left" valign="middle">
+            <a href="{{ADD_MEMBER_USER_URL}}" data-href="?tab1=timeline&id={{ADD_MEMBER_USERNAME}}">
+                <img width="36px" height="36px" class="radius100" src="{{ADD_MEMBER_USER_THUMBNAIL_URL}}" alt="{{ADD_MEMBER_USER_NAME}}">
+            </a>
+        </td>
+        <td align="left" valign="middle">
+            <a class="bold-500" href="{{ADD_MEMBER_USER_URL}}" data-href="?tab1=timeline&id={{ADD_MEMBER_USERNAME}}">
+                {{ADD_MEMBER_USER_NAME}}
+            </a>
+        </td>
+        <td align="right" valign="middle">
+            <input class="column-btn add-member-btn" type="submit" value="Add" onclick="SK_addGroupMember({{TIMELINE_ID}},{{ADD_MEMBER_USER_ID}});">
+        </td>
+    </tr>
+    </table>
+</div>

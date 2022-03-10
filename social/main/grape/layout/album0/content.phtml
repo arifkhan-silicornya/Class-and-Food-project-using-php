@@ -1,0 +1,33 @@
+<div class="page-margin"></div>
+<div class="float-right span63" style="margin-left: 25%;">
+    <div class="e-album-upload-container" align="center">
+        {{OPTIONS}}
+    </div>
+
+    <div class="e-album-photos-container">
+        <div class="album-name-header" align="center">
+            {{ALBUM_NAME}}
+        </div>
+
+        <p class="album-descr-para" align="center">
+            {{ALBUM_DESCR}}
+        </p>
+
+        <div class="album-photos">
+            {{LIST_PHOTOS}}
+
+            <div class="float-clear"></div>
+        </div>
+    </div>
+</div>
+
+{{SIDEBAR}}
+
+<div class="float-clear"></div>
+
+<form class="e-album-form hidden" method="post" enctype="multipart/form-data">
+    <input class="e-album-fileinput" type="file" name="photos[]" multiple="yes" accept="image/jpeg,image/png,image/gif" onchange="javascript:$('.e-album-form').submit();">
+    <input type="hidden" name="album_id" value="{{ALBUM_ID}}">
+</form>
+
+{{END}}

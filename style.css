@@ -1,0 +1,47 @@
+.box1 {
+    animation-name: example1;
+    animation-duration: 5s;
+    position: relative;
+    animation-fill-mode: ease-in-out;
+}
+
+@keyframes example1 {
+    0% {
+        left: -50%;
+    }
+    100% {
+        left: 0%;
+    }
+}
+
+.box2 {
+    animation-name: example2;
+    animation-duration: 2s;
+    position: relative;
+    animation-fill-mode: linear;
+}
+
+@keyframes example2 {
+    0% {
+        top: -50%;
+    }
+    100% {
+        top: 0%;
+    }
+}
+
+.box3 {
+    animation-name: example3;
+    animation-duration: 5s;
+    position: relative;
+    animation-fill-mode: forwards;
+}
+
+@keyframes example3 {
+    0% {
+        right: -50%;
+    }
+    100% {
+        right: 0%;
+    }
+}

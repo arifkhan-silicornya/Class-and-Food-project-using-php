@@ -1,0 +1,49 @@
+<form class="welcome-form signup-form" method="post">
+    <div class="form-header">
+        @sign_up_label@
+    </div>
+    <div class="form-content">
+        <div class="input-wrapper">
+            <input type="text" name="name" placeholder="@fullname_label@" autocomplete="off">
+        </div>
+        
+        <div class="input-wrapper">
+            <input type="text" name="username" placeholder="@username_label@" onkeyup="SK_checkUsername(this.value,0,'.check-username-result',false);" autocomplete="off">
+            <div class="check-username-result"></div>
+        </div>
+        
+        <div class="input-wrapper">
+            <input type="password" name="password" placeholder="@password_label@" autocomplete="off">
+        </div>
+        
+        <div class="input-wrapper">
+            <input type="text" name="email" placeholder="@email_label@" autocomplete="off">
+        </div>
+        
+        <div class="input-wrapper">
+            <select name="gender">
+                <option value="">
+                    @gender_label@
+                </option>
+                <option value="male">
+                    @gender_male_label@
+                </option>
+                <option value="female">
+                    @gender_female_label@
+                </option>
+            </select>
+        </div>
+
+        {{SIGNUP_BIRTHDAY_INPUT}}
+
+        {{SIGNUP_LOCATION_INPUT}}
+
+        {{SIGNUP_HOMETOWN_INPUT}}
+
+        {{SIGNUP_ABOUT_INPUT}}
+        
+        {{SIGNUP_CAPTCHA_INPUT}}
+        
+        <button class="submit-btn active"><i class="icon-angle-right progress-icon"></i> @sign_up_label@</button>
+    </div>
+</form>

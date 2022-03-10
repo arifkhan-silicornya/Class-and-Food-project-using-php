@@ -1,0 +1,9 @@
+<div class="chat-textarea chatbox{{CHAT_RECIPIENT_ID}}">
+    <textarea class="auto-grow-input" onfocus="SK_focusChat();" onkeyup="SK_sendChatMessage(this.value,{{CHAT_RECIPIENT_ID}},event);"></textarea>
+    <div class="advanced-options">
+        <i class="icon-smile cursor-hand" onclick="javascript:$('.chat-emoticons-wrapper').toggle();"></i>
+        <div class="chat-emoticons-wrapper">
+            {{EMOTICONS_HTML}}
+        </div>
+    </div>
+</div>

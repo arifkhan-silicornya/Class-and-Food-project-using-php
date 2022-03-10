@@ -1,0 +1,43 @@
+
+<script>
+function SK_filterStories(type, timeline_id) {
+    main_wrapper = $('.story-filters-wrapper');
+    filter_wrapper = main_wrapper.find('.' + type + '-wrapper');
+    stories_wrapper = $('.stories-container');
+    
+    SK_progressIconLoader(filter_wrapper);
+    
+    sendData = new Object();
+    sendData.t = 'post';
+    sendData.a = 'filter';
+    sendData.type = type;
+    
+    if (typeof(timeline_id) != "undefined") {
+        sendData.timeline_id = timeline_id;
+        stories_wrapper.attr('data-story-timeline', timeline_id);
+    }
+    
+    stories_wrapper.attr('data-story-type', type)
+        .find('.stories-wrapper').html('')
+        .end()
+        .find('.load-btn').fadeOut('fast');
+    
+    $.get(SK_source(), sendData, function (data) {
+        
+        if (data.status == 200) {
+            stories_wrapper
+                .find('.stories-wrapper')
+                    .html(data.html)
+                .end()
+                .find('.load-btn')
+                    .fadeIn('fast').attr('onclick','SK_loadOldStories();').html('<i class="icon-reorder progress-icon hide"></i> View previous posts');
+        }
+        
+        main_wrapper.find('.filter-active').removeClass('filter-active');
+        filter_wrapper.addClass('filter-active');
+        
+        SK_progressIconLoader(filter_wrapper);
+        
+    });
+}
+</script>

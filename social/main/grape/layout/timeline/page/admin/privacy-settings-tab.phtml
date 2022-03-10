@@ -1,0 +1,70 @@
+<form class="update-page-privacy" method="post">
+    <div class="form-container">
+        <div class="form-header">
+            @privacy_settings_label@
+        </div>
+        <div class="form-input-wrapper">
+            <label class="float-left span35">
+                @pages_timeline_post_privacy@:
+            </label>
+            <div class="input float-left span55">
+                <select name="timeline_post_privacy">
+                    <option value="everyone" {{POST_PRIVACY_EVERYONE_SELECTED_ATTR}}>
+                        @yes@
+                    </option>
+
+                    <option value="none" {{POST_PRIVACY_NONE_SELECTED_ATTR}}>
+                        @no@
+                    </option>
+                </select>
+            </div>
+            <div class="float-clear"></div>
+        </div>
+        <div class="form-input-wrapper">
+            <label class="float-left span35">
+                @pages_message_privacy@:
+            </label>
+            <div class="input float-left span55">
+                <select name="message_privacy">
+                    <option value="everyone" {{MESSAGE_PRIVACY_EVERYONE_SELECTED_ATTR}}>
+                        @yes@
+                    </option>
+                    
+                    <option value="none" {{MESSAGE_PRIVACY_NONE_SELECTED_ATTR}}>
+                        @no@
+                    </option>
+                </select>
+            </div>
+            <div class="float-clear"></div>
+        </div>
+        <div class="form-input-wrapper">
+            <button class="active">
+                <i class="icon-lightbulb progress-icon hide"></i> 
+                @save_changes_button@
+            </button>
+        </div>
+    </div>
+    <input name="timeline_id" value="{{TIMELINE_ID}}" type="hidden">
+</form>
+<script>
+$ (function () {
+    $('form.update-page-privacy').ajaxForm({
+        url: SK_source() + '?t=page&a=update',
+        
+        success: function (responseText) {
+            
+            if (responseText.status == 200) {
+                
+                if ($('.success-message').length == 0) {
+                    $('.form-header').after('<div class="success-message hidden">@changes_saved@.</div>');
+                    $('.success-message').fadeIn('fast',function () {
+                        $(this).fadeOut(1500, function() {
+                            $(this).remove();
+                        });
+                    });
+                }
+            }
+        }
+    });
+});
+</script>

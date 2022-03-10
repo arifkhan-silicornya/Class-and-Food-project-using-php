@@ -1,0 +1,55 @@
+<div class="window-container">
+    <div class="window-background" onclick="SK_closeWindow();"></div>
+    <div class="window-wrapper">
+        <div class="window-header-wrapper">
+            <i class="icon-thumbs-up"></i> 
+            <?php
+            echo $lang['liked_people_label'];
+            ?>
+            <span class="window-close-btn" title="Close window" onclick="SK_closeWindow();">
+                <i class="icon-remove"></i>
+            </span>
+        </div>
+        <div class="window-content-wrapper">
+            <?php
+            if (SK_countPostLikes($sk['post']['id']) == 0) {
+            ?>
+            <div class="no-content-wrapper" align="center">
+                <?php
+                echo $lang['no_likes_label'];
+                ?>
+            </div>
+            <?php } else {
+                
+                foreach (SK_getPostLikes($sk['post']['id'], true) as $liked_people) {
+            ?>
+            <div class="window-list-wrapper">
+                <table border="0" width="100%" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td width="40px" align="left" valign="middle">
+                        <a href="<?php echo $liked_people['url']; ?>">
+                            <img class="avatar" src="<?php echo $liked_people['thumbnail_url']; ?>" width="32px" alt="<?php echo $liked_people['name']; ?>">
+                        </a>
+                    </td>
+                    <td align="left" valign="middle">
+                        <a class="name" href="<?php echo $liked_people['url']; ?>">
+                            <?php
+                            echo $liked_people['name'];
+                            ?>
+                        </a>
+                    </td>
+                    <td class="window-btn" align="right" valign="middle">
+                        <?php
+                        echo SK_getFollowButton($liked_people['id']);
+                        ?>
+                    </td>
+                </tr>
+                </table>
+            </div>
+            <?php
+                }
+            }
+            ?>
+        </div>
+    </div>
+</div>

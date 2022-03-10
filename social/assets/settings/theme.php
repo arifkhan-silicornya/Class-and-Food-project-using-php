@@ -1,0 +1,2 @@
+<?php
+$config['theme'] = 'grape';

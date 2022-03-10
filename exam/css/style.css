@@ -1,0 +1,32 @@
+.bg_img {
+    background: url(../image/bg.png);
+    min-height: 535px;
+}
+
+.loginForm {
+    position: fixed!important;
+    top: 8%!important;
+    left: 10%;
+    right: 10%;
+    z-index: 100000!important;
+}
+
+@media screen and (max-width: 767px) {
+    .loginForm {
+        position: fixed;
+        width: 100%;
+        left: 1%;
+        right: 1%;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    #content #left_side {
+        width: 100%;
+        display: block;
+    }
+    #content #right_side {
+        width: 100%;
+        display: block;
+    }
+}

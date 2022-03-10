@@ -1,0 +1,190 @@
+<form class="update-timeline-form" method="post">
+    <div class="form-container">
+        <div class="form-header">
+            @general_settings_label@
+        </div>
+        
+        <div class="form-input-wrapper">
+            <label class="float-left span15">
+                @username_label@:
+            </label>
+
+            <div class="input float-left span70">
+                <input type="text" name="username" value="{{USER_USERNAME}}" autocomplete="off" onkeyup="SK_checkUsername(this.value,{{USER_ID}},'.check-username-result',true);">
+                <div class="check-username-result ajax-result"></div>
+            </div>
+
+            <div class="float-clear"></div>
+        </div>
+        
+        <div class="form-input-wrapper">
+            <label class="float-left span15">
+                @fullname_label@:
+            </label>
+
+            <div class="input float-left span70">
+                <input type="text" name="name" value="{{USER_NAME}}">
+            </div>
+
+            <div class="float-clear"></div>
+        </div>
+        
+        <div class="form-input-wrapper">
+            <label class="float-left span15">
+                Educational Details
+            </label>
+
+            <div class="input float-left span70">
+                <textarea class="auto-grow-input" name="about" valign="top">{{USER_ABOUT}}</textarea>
+            </div>
+
+            <div class="float-clear"></div>
+        </div>
+        
+        <div class="form-input-wrapper">
+            <label class="float-left span15">
+                @email_label@:
+            </label>
+
+            <div class="input float-left span70">
+                <input type="text" name="email" value="{{USER_EMAIL}}">
+            </div>
+
+            <div class="float-clear"></div>
+        </div>
+        
+        <div class="form-input-wrapper">
+            <label class="float-left span15">
+                @birthday_label@:
+            </label>
+
+            <div class="input float-left span70">
+                <select class="birth-date-select" name="birthday[0]" style="width: 20%;">
+                    <option value="">
+                        @day@:
+                    </option>
+
+                    {{BIRTH_DATE_OPTIONS}}
+                </select>
+
+                <select class="birth-month-select" name="birthday[1]" style="width: 30%;" onchange="SK_getMonthDays(this.value);">
+                    <option value="">
+                        @month@:
+                    </option>
+
+                    {{BIRTH_MONTH_OPTIONS}}
+                </select>
+
+                <select class="birth-year-select" name="birthday[2]" style="width: 30%;">
+                    <option value="">
+                        @year@:
+                    </option>
+
+                    {{BIRTH_YEAR_OPTIONS}}
+                </select>
+            </div>
+
+            <div class="float-clear"></div>
+        </div>
+        
+        <div class="form-input-wrapper">
+            <label class="float-left span15">
+                @gender_label@:
+            </label>
+
+            <div class="input float-left span70">
+                <select name="gender">
+                    <option value="male" {{GENDER_MALE_SELECTED_ATTR}}>
+                        @gender_male_label@
+                    </option>
+
+                    <option value="female" {{GENDER_FEMALE_SELECTED_ATTR}}>
+                        @gender_female_label@
+                    </option>
+                </select>
+            </div>
+            <div class="float-clear"></div>
+        </div>
+        
+        <div class="form-input-wrapper">
+            <label class="float-left span15">
+                @location_label@:
+            </label>
+
+            <div class="input float-left span70">
+                <input type="text" name="current_city" value="{{USER_LOCATION}}">
+            </div>
+
+            <div class="float-clear"></div>
+        </div>
+        
+        <div class="form-input-wrapper">
+            <label class="float-left span15">
+                @hometown_label@:
+            </label>
+
+            <div class="input float-left span70">
+                <input type="text" name="hometown" value="{{USER_HOMETOWN}}">
+            </div>
+
+            <div class="float-clear"></div>
+        </div>
+        
+
+        
+        <div class="form-input-wrapper">
+            <button class="active">
+                <i class="icon-lightbulb progress-icon hide"></i> 
+                @save_changes_button@
+            </button>
+        </div>
+    </div>
+</form>
+
+<script>
+$(function () {
+    $('form.update-timeline-form').ajaxForm({
+        url: SK_source()+'?t=user&a=settings',
+        
+        beforeSend: function () {
+            SK_progressIconLoader($('form.update-timeline-form').find('button'));
+        },
+        
+        success: function (responseText) {
+            
+            if (responseText.status == 200) {
+                $('.header-user-link').attr('href', responseText.url);
+                $('.form-header').after('<div class="success-message hidden">Changes saved.</div>');
+                $('.success-message').fadeIn('fast',function () {
+                    $(this).fadeOut(1500, function() {
+                        $(this).remove();
+                    });
+                });
+            }
+            
+            SK_progressIconLoader($('form.update-timeline-form').find('button'));
+        }
+    });
+});
+
+function SK_getMonthDays(month_number) {
+    var month = new Array();
+    month[1] = 31;
+    month[2] = 28;
+    month[3] = 31;
+    month[4] = 30;
+    month[5] = 31;
+    month[6] = 30;
+    month[7] = 31;
+    month[8] = 31;
+    month[9] = 30;
+    month[10] = 31;
+    month[11] = 30;
+    month[12] = 31;
+    $('.birth-date-select').html('');
+    
+    for (i=1; i<=month[month_number]; i++) {
+        $('.birth-date-select').append('<option value="'+ i +'">'+ i +'</option>');
+    }
+}
+</script>

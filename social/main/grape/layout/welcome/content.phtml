@@ -1,0 +1,132 @@
+<div class="page-margin"></div>
+<div align="center" class="welcome-form-div">
+    <div class="welcome-form">
+        <div class="dfdfdss">
+            
+        </div>
+
+        <div class="form-header">
+            <div class="float-left" style="margin-right: 33px;">
+                <a class="login-tab active-tab form-tab" onclick="javascript:welcome_form_changetab(this,'login-form');" href="#">@log_in@</a>
+                <a class="signup-tab form-tab" onclick="javascript:welcome_form_changetab(this,'signup-form');" href="#">@sign_up_label@</a>
+               
+            </div>
+
+            <div class="float-right"></div>
+
+            <div class="float-clear"></div>
+        </div>
+
+        <form class="login-form" method="post">
+            <div class="form-content">
+                <div class="input-wrapper">
+                    <input type="text" name="login_id" placeholder="@login_id_label@" autocomplete="off" required>
+                </div>
+                
+                <div class="input-wrapper">
+                    <input type="password" name="login_password" placeholder="Password" autocomplete="off" required>
+                </div>
+
+
+
+                {{SIGNUP_CAPTCHA_INPUT}}
+                
+                
+                
+               
+                
+                <button class="submit-btn active"><i class="icon-signin progress-icon"></i> @log_in@</button>
+            </div>
+        </form>
+
+        <form class="signup-form" method="post">
+            <div class="form-content">
+                <div class="input-wrapper">
+                    <input type="text" name="name" placeholder="@fullname_label@" autocomplete="off" required>
+                </div>
+                
+                <div class="input-wrapper">
+                    <input type="text" name="username" placeholder="@username_label@" onkeyup="SK_checkUsername(this.value,0,'.check-username-result',false);" autocomplete="off" required>
+                    <div class="check-username-result"></div>
+                </div>
+                
+                <div class="input-wrapper">
+                    <input type="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title=" must contain 8 or more characters that are of at least one number, and one uppercase and lowercase letter" placeholder="@password_label@" autocomplete="off" required>
+                </div>
+                
+                <div class="input-wrapper">
+                    <input type="text" name="email" pattern=".+@a.com" title="please input your @manarat.ac.bd mail" placeholder="@email_label@" autocomplete="off" required>
+                </div>
+                
+                <div class="input-wrapper">
+                    <select name="gender" required>
+                        <option value="">
+                            @gender_label@
+                        </option>
+                        <option value="male">
+                            @gender_male_label@
+                        </option>
+                        <option value="female">
+                            @gender_female_label@
+                        </option>
+                    </select>
+                </div>
+
+                {{SIGNUP_BIRTHDAY_INPUT}}
+
+                {{SIGNUP_LOCATION_INPUT}}
+
+                {{SIGNUP_HOMETOWN_INPUT}}
+
+                {{SIGNUP_ABOUT_INPUT}}
+                
+                {{SIGNUP_CAPTCHA_INPUT}}
+
+                
+                
+                <button class="submit-btn active"><i class="icon-angle-right progress-icon"></i> @sign_up_label@</button>
+            </div>
+        </form>
+
+        <form class="forgotpass-form" method="post">
+            <div class="form-content">
+                <div class="input-wrapper">
+                    <input type="text" name="forgotpass_id" value="@login_id_label@" placeholder="@login_id_label@" data-placeholder="@login_id_label@" autocomplete="off">
+                </div>
+                
+                <button class="submit-btn active">
+                    <i class="icon-inbox progress-icon"></i> @reset_password_reset@
+                </button>
+            </div>
+        </form>
+
+        <div class="hr"></div>
+
+
+    </div>
+
+
+
+
+    <div class="rgdfg" style="position: relative;margin-bottom: 15px;font-size: 15px;max-width: 134px;left: 338px;bottom: -25px;">
+     <a class="cgncgnbcgg" onclick="javascript:welcome_form_changetab(this,'forgotpass-form');" href="#">@forgot_password@</a>
+
+     </div>
+
+
+</div>
+
+
+<div class="float-clear"></div>
+<script>
+function welcome_form_changetab(tab,formClass)
+{
+    $('.welcome-form').find('.form-header').find('.form-tab').removeClass('active-tab');
+    $(tab).addClass('active-tab');
+
+    $('.welcome-form')
+        .find('form').hide()
+    .end()
+        .find('form.' + formClass).show();
+}
+</script>

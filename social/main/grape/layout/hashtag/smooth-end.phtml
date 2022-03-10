@@ -1,0 +1,452 @@
+<script>
+$('form.hashtag-search-form').submit(function() {
+    query = $('.query-input').val();
+    $(this)
+        .attr('action', '{{CONFIG_SITE_URL}}/hashtag/' + query)
+        .find('.query-input').attr({'name':'','value':''})
+        .end()
+        .find('input[type=hidden]').remove();
+});
+
+// Like story
+function SK_registerStoryLike(post_id) {
+    main_elem = $(".story_" + post_id);
+    like_btn = main_elem.find('.story-like-btn');
+    like_activity_btn = main_elem.find('.story-like-activity');
+    
+    SK_progressIconLoader(like_btn);
+    
+    $.get(SK_source(), {t: 'post', post_id: post_id, a: 'like'}, function(data) {
+        if (data.status == 200) {
+            if (data.liked == true) {
+                like_btn
+                    .after(data.button_html)
+                    .remove();
+                like_activity_btn
+                    .html(data.activity_html);
+            } else {
+                like_btn
+                    .after(data.button_html)
+                    .remove();
+                like_activity_btn
+                    .html(data.activity_html);
+            }
+        }
+    });
+}
+
+// Share story
+function SK_registerStoryShare(post_id) {
+    main_elem = $('.story_'+post_id);
+    share_btn = main_elem.find('.story-share-btn');
+    share_activity_btn = main_elem.find('.story-share-activity');
+    
+    SK_progressIconLoader(share_btn);
+    
+    $.get(SK_source(), {t: 'post', post_id: post_id, a: 'share'}, function(data) {
+        if (data.status == 200) {
+            if (data.shared == true) {
+                share_btn
+                    .after(data.button_html)
+                    .remove();
+                share_activity_btn
+                    .html(data.activity_html);
+            } else {
+                share_btn
+                    .after(data.button_html)
+                    .remove();
+                share_activity_btn
+                    .html(data.activity_html);
+            }
+        }
+    });
+}
+
+// Follow story
+function SK_registerStoryFollow(post_id) {
+    main_elem = $('.story_'+post_id);
+    follow_btn = main_elem.find('.story-follow-btn');
+    follow_activity_btn = main_elem.find('.story-follow-activity');
+    
+    SK_progressIconLoader(follow_btn);
+    
+    $.get(SK_source(), {t: 'post', post_id: post_id, a: 'follow'}, function(data) {
+        if (data.status == 200) {
+            if (data.shared == true) {
+                follow_btn
+                    .after(data.button_html)
+                    .remove();
+                follow_activity_btn
+                    .html(data.activity_html);
+            } else {
+                follow_btn
+                    .after(data.button_html)
+                    .remove();
+                follow_activity_btn
+                    .html(data.activity_html);
+            }
+        }
+    });
+}
+
+// Show post likes window (popup)
+function SK_getStoryLikes(post_id) {
+    main_elem = $('.story_' + post_id);
+    like_activity_btn = main_elem.find('.like-activity');
+    SK_progressIconLoader(like_activity_btn);
+    
+    $.get(SK_source(), {t: 'post', post_id: post_id, a: 'view_likes'}, function(data) {
+        
+        if (data.status == 200) {
+            $(document.body)
+                .append(data.html)
+                .css('overflow','hidden');
+            
+            if ($('.header-wrapper').width() < 920) {
+                $('.window-wrapper').css('margin-top',($(document).scrollTop()+10)+'px');
+            }
+        }
+        
+        SK_progressIconLoader(like_activity_btn);
+    });
+}
+
+// Show post shares window
+function SK_getStoryShares(post_id) {
+    main_elem = $('.story_' + post_id);
+    share_activity_btn = main_elem.find('.share-activity');
+    SK_progressIconLoader(share_activity_btn);
+    
+    $.get(SK_source(), {t: 'post', post_id: post_id, a: 'view_shares'}, function(data) {
+        
+        if (data.status == 200) {
+            $(document.body)
+                .append(data.html)
+                .css('overflow','hidden');
+            
+            if ($('.header-wrapper').width() < 920) {
+                $('.window-wrapper').css('margin-top',($(document).scrollTop()+10)+'px');
+            }
+        }
+        
+        SK_progressIconLoader(share_activity_btn);
+    });
+}
+
+// Show delete post window
+function SK_viewRemove(post_id) {
+    main_wrapper = $('.story_' + post_id);
+    button_wrapper = main_wrapper.find('.remove-btn');
+    SK_progressIconLoader(button_wrapper);
+    
+    $.get(
+        SK_source(),
+
+        {
+            t: 'post',
+            post_id: post_id,
+            a: 'view_remove'
+        },
+
+        function(data) {
+            if (data.status == 200) {
+                $(document.body)
+                    .append(data.html)
+                    .css('overflow','hidden');
+                
+                if ($('.header-wrapper').width() < 920) {
+                    $('.window-wrapper').css('margin-top',($(document).scrollTop()+10)+'px');
+                }
+            }
+            
+            SK_progressIconLoader(button_wrapper);
+        }
+    );
+}
+
+// Cancel remove
+function SK_cancelRemove(post_id) {
+    main_wrapper = $('.story_' + post_id);
+    SK_progressIconLoader(main_wrapper.find('.remove-btn'));
+    SK_closeWindow();
+}
+
+// Delete post
+function SK_removePost(post_id) {
+    SK_closeWindow();
+    $.get(SK_source(), {t: 'post', post_id: post_id, a: 'remove'}, function(data) {
+        
+        if (data.status == 200) {
+            $('.story_' + post_id).slideUp(function(){
+                $(this).remove();
+            });
+
+            $('.photo_' + post_id).fadeOut(function(){
+                $(this).remove();
+            });
+        }
+    });
+}
+
+// Report Post
+function SK_reportPost(post_id)
+{
+    main_wrapper = $('.story_' + post_id);
+    SK_progressIconLoader(main_wrapper.find('.report-btn'));
+    
+    $.get (SK_source(), {t: 'post', post_id: post_id, a: 'report'}, function(data) {
+        
+        if (data.status == 200) {
+            
+            main_wrapper.find('.report-btn').text('Reported!').fadeOut(1500);
+        }
+        
+        SK_progressIconLoader($('.story_' + post_id).find('.report-btn'));
+    });
+}
+
+// Load old stories
+function SK_loadOldStories() {
+    body_wrapper = $('.stories-container');
+    button_wrapper = $('.stories-container').find('.load-btn');
+    
+    SK_progressIconLoader(button_wrapper);
+    
+    outgoing_data = new Object();
+    outgoing_data.t = 'post';
+    outgoing_data.a = 'filter';
+    
+    if ( typeof(body_wrapper.attr('data-story-type')) == "string" ) {
+        outgoing_data.type = body_wrapper.attr('data-story-type');
+    }
+    
+    if ( typeof(body_wrapper.attr('data-story-timeline')) =="string" ) {
+        outgoing_data.timeline_id = body_wrapper.attr('data-story-timeline');
+    }
+    
+    if ($('.story-wrapper').length > 0) {
+        outgoing_data.after_id = $('.story-wrapper:last').attr('data-story-id');
+    }
+    
+    $.get(SK_source(), outgoing_data, function (data) {
+        
+        if (data.status == 200 ) {
+            $('.stories-wrapper').append(data.html);
+        } else {
+            button_wrapper.text('No more posts to show').removeAttr('onclick');
+        }
+        
+        SK_progressIconLoader(button_wrapper);
+        
+    });
+}
+
+/** Comment functions */
+
+/* Post comment */
+function postComment(text, post_id, timeline_id, event)
+{
+    if (event.keyCode == 13 && event.shiftKey == 0)
+    {
+        main_wrapper = $('.story_' + post_id);
+        comment_textarea = main_wrapper.find('.comment-textarea');
+        textarea_wrapper = comment_textarea.find('textarea');
+        textarea_wrapper.val('');
+        
+        SK_progressIconLoader(comment_textarea);
+        
+        $.post(SK_source() + '?t=post&a=comment&post_id=' + post_id, {text: text, timeline_id: timeline_id}, function (data) {
+            
+            if (data.status == 200) {
+                main_wrapper.find('.comment-wrapper:last').before(data.html);
+                main_wrapper.find('.story-comment-activity').html(data.activity_html);
+            }
+            
+            SK_progressIconLoader(comment_textarea);
+        });
+    }
+}
+
+/* Like comment */
+function likeComment(comment_id) {
+    main_elem = $('.comment_' + comment_id);
+    like_btn = main_elem.find('.comment-like-btn');
+    like_activity_btn = main_elem.find('.comment-like-activity');
+    
+    SK_progressIconLoader(like_btn);
+    
+    $.get(
+        SK_source(),
+
+        {
+            t: 'comment',
+            comment_id: comment_id,
+            a: 'like'
+        },
+
+        function(data) {
+            if (data.status == 200)
+            {
+                if (data.liked == true)
+                {
+                    like_btn
+                        .after(data.button_html)
+                        .remove();
+                    like_activity_btn
+                        .html(data.activity_html);
+                }
+                else
+                {
+                    like_btn
+                        .after(data.button_html)
+                        .remove();
+                    like_activity_btn
+                        .html(data.activity_html);
+                }
+            }
+        }
+    );
+}
+
+/* View comment likes */
+function viewCommentLikes(comment_id) {
+    main_elem = $('.comment_' + comment_id);
+    like_activity_btn = main_elem.find('.comment-like-activity');
+    SK_progressIconLoader(like_activity_btn);
+    
+    $.get(
+        SK_source(),
+
+        {
+            t: 'comment',
+            comment_id: comment_id,
+            a: 'view_likes'
+        },
+
+        function(data) {
+            if (data.status == 200)
+            {
+                $(document.body)
+                    .append(data.html)
+                    .css('overflow','hidden');
+                
+                if ($('.header-wrapper').width() < 920)
+                {
+                    $('.window-wrapper').css('margin-top', ($(document).scrollTop() + 10) + 'px');
+                }
+            }
+            
+            SK_progressIconLoader(like_activity_btn);
+        }
+    );
+}
+
+/* Report Comment */
+function reportComment(comment_id)
+{
+    main_wrapper = $('.comment_' + comment_id);
+    SK_progressIconLoader(main_wrapper.find('.report-btn'));
+    
+    $.get (
+        SK_source(),
+
+        {
+            t: 'comment',
+            comment_id: comment_id,
+            a: 'report'
+        },
+
+        function(data)
+        {
+            if (data.status == 200)
+            {
+                main_wrapper.find('.report-btn').text('Reported!').fadeOut(1500);
+            }
+            SK_progressIconLoader($('.comment_' + comment_id).find('.report-btn'));
+        }
+    );
+}
+
+/* View comment remove */
+function viewCommentRemove(comment_id) {
+    main_wrapper = $('.comment_' + comment_id);
+    button_wrapper = main_wrapper.find('.comment-remove-btn');
+    
+    SK_progressIconLoader(button_wrapper);
+    
+    $.get(
+        SK_source(),
+
+        {
+            t: 'comment',
+            comment_id: comment_id,
+            a: 'view_remove'
+        },
+
+        function(data)
+        {
+            if (data.status == 200)
+            {
+                $(document.body)
+                    .append(data.html)
+                    .css('overflow','hidden');
+                
+                if ($('.header-wrapper').width() < 920)
+                {
+                    $('.window-wrapper').css('margin-top', ($(document).scrollTop()+10)+'px');
+                }
+            }
+            
+            SK_progressIconLoader(button_wrapper);
+        }
+    );
+}
+
+/* Cancel comment remove */
+function cancelCommentRemove(comment_id) {
+    button = $('.comment_' + comment_id).find('.remove-btn');
+    SK_progressIconLoader(button);
+    SK_closeWindow();
+}
+
+/* Remove comment */
+function removeComment(comment_id) {
+    SK_closeWindow();
+
+    $.get(
+        SK_source(),
+
+        {
+            t: 'comment',
+            comment_id: comment_id,
+            a: 'remove'
+        },
+
+        function(data)
+        {
+            if (data.status == 200)
+            {
+                $('.comment_' + comment_id).slideUp(function() {
+                    $(this).remove();
+                });
+            }
+        }
+    );
+}
+
+/* View all comments */
+function viewAllComments(post_id) {
+    main_wrapper = $('.story_' + post_id);
+    view_more_wrapper = main_wrapper.find('.view-more-wrapper');
+    
+    SK_progressIconLoader(view_more_wrapper);
+    
+    $.get(SK_source(), {t: 'post', a: 'view_all_comments', post_id: post_id}, function (data) {
+        
+        if (data.status == 200) {
+            main_wrapper.find('.comments-wrapper').html(data.html);
+            view_more_wrapper.remove();
+        }
+    });
+}
+</script>

@@ -1,0 +1,31 @@
+<div class="page-margin"></div>
+<div class="float-right span63" style="margin-left: 25%;">
+    <form class="list-wrapper search-form" method="get" action="{{CONFIG_SITE_URL}}/index.php">
+        <div class="list-header">
+            @search_header_label@
+        </div>
+        
+        <div class="list-column">
+            <input class="query-input" type="text" name="query" placeholder="Search Teachers, Students, Groups& Pages" style="width: 85%;border-radius: 20px;">
+            <button style="background: #3367d6;color: #ffffff;border-radius: 20px;">
+                @search_button@
+            </button>
+        </div>
+        
+        <input type="hidden" name="tab1" value="search">
+    </form>
+    
+    <div class="list-wrapper">
+        <div class="list-header">
+            @search_result_header_label@
+        </div>
+
+        {{LIST_SEARCH_RESULTS}}
+    </div>
+</div>
+
+{{SIDEBAR}}
+
+<div class="float-clear"></div>
+
+{{END}}

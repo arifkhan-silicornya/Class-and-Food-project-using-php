@@ -1,0 +1,33 @@
+<script>
+    $(function () {
+        $('form.s-album-container').ajaxForm({
+            url: SK_source() + '?t=album&a=create',
+            
+            beforeSend: function() {
+                var formButton = $('form.s-album-container').find('button');
+                formButton.removeClass('active').text('@creating@...').css('disabled', true);
+            },
+
+            uploadProgress: function(event, position, total, percentComplete) {
+                var percentVal = percentComplete + '%';
+                var formButton = $('form.s-album-container').find('button');
+
+                formButton.removeClass('active').text('@creating@... ' + percentVal).css('disabled', true);
+
+                if (percentComplete == 100) {
+                    formButton.removeClass('active').text('@please_wait@...').css('disabled', true);
+                }
+            },
+            
+            success: function(responseText) {
+                var formButton = $('form.s-album-container').find('button');
+
+                if (responseText.status == 200) {
+                    window.location = responseText.url;
+                } else {
+                    formButton.addClass('active').text('@album_create_label@').css('disabled', false);
+                }
+            }
+        });
+    });
+</script>
