@@ -45,7 +45,7 @@ if(empty($_SESSION['exmUserid']))
                     <ul class="navbar-nav">
                         <li class="nav-item active d-flex">
                             <a class="d-flex text-light font-weight-bold m-2 btn" href="../index.php">
-                                <img src="../image/home.png" alt="" class="img-fluid" style="height: 30px; width:30px;"> 
+                                <img src="../image/house.png" alt="" class="img-fluid" style="height: 30px; width:30px;"> 
                             </a>
                             <a class="nav-link my-auto" href="php/logout.php">Logout</a>
                         </li>

@@ -36,7 +36,7 @@ if(!empty($_SESSION['exmUserid']))
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item d-flex">
                         <a class="d-flex text-light font-weight-bold m-2 btn" href="../index.php">
-                            <img src="../image/home.png" alt="" class="img-fluid" style="height: 30px; width:30px;"> 
+                            <img src="../image/house.png" alt="" class="img-fluid" style="height: 30px; width:30px;"> 
                         </a>
                         <button class="btn btn-outline-dark" onclick="loginForm();"> Login </button>
                     </li>

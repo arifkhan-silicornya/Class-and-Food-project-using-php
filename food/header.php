@@ -68,7 +68,7 @@ else {
                     <h6><span class="badge badge-danger text-dark"><?php echo $countproduct;?></span></h6>
                 </a>
                 <a class="d-flex text-light font-weight-bold m-2 btn text-dark" onclick="showSmallPanel();" > <?php echo $uname?></a>
-                <a class="d-flex text-light font-weight-bold m-2 btn" href="../index.php"> <img src="../image/home.png" alt="" class="img-fluid" style="height: 30px; width:30px;"> </a>
+                <a class="d-flex text-light font-weight-bold m-2 btn" href="../index.php"> <img src="../image/house.png" alt="" class="img-fluid" style="height: 30px; width:30px;"> </a>
             </span>
         </div>
     </header>
