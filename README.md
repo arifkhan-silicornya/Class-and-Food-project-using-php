@@ -18,9 +18,14 @@ Copy or move PHP project files to this directory.
 Open a web browser and type localhost in the address bar. This will take you to the XAMPP welcome page.
 To access PHP project, navigate to localhost/project_folder/ in your browser. Replace project_folder with the actual name of your project folder.
 
-5. Set Up a Database (if required): you'll need to set up a database using tools like phpMyAdmin (included in XAMPP):
+5. Set Up a Database : you'll need to set up a database using tools like phpMyAdmin (included in XAMPP):
 In your browser, go to localhost/phpmyadmin.
-Create a new database and import your database files.
+Create a new database and import your database files from ./database/*.
+  
 
-6. Configure Database Connection:
+7. Configure Database Connection:
+  Database Config files:
+    Exam : exam/php/connection.php
+    food : food/php/conect_database.php
+
 If PHP project connects to a database, make sure the connection details (like hostname, username, password, database name) in your project's configuration files match the settings of your local database.
