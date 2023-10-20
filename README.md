@@ -31,4 +31,4 @@ Create a new database and import your database files from <b> ./database/* </b> 
 If PHP project connects to a database, make sure the connection details (like hostname, username, password, database name) in your project's configuration files match the settings of your local database.
 
 
-<img src="image/class-food.jpg" />
+<img src="image/class-food.png" />
